@@ -1,0 +1,63 @@
+.navbar-brand {
+    width: 100px;
+    img {
+        width: 100%;
+    }
+}
+
+.page-home {
+    .carousel {
+        height: 50vh;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+    h5 {
+        font-weight: 600;
+        margin-top: 15px;
+        margin-bottom: 25px;
+        &:before {
+            content: "";
+            width: 150px;
+            height: 10%;
+            background: #2E9100;
+            position: absolute;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+    }
+    h5::after .store-trend-categories {
+        margin-top: 30px;
+    }
+    .store-new-product {
+        margin-top: 30px;
+    }
+    .link-show-more {
+        font-size: 16px;
+        margin-top: 30px;
+        font-weight: 500;
+        color: #2E9100;
+    }
+}
+
+.informasi-footer {
+    margin-top: 0px;
+    background-color: #F2F2F2;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    .title-footer {
+        font-size: 18px;
+        font-weight: 700;
+    }
+    .menu-footer {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        a {
+            margin-top: 10px;
+            color: #000;
+        }
+    }
+    .logo-footer {
+        width: 100%;
+    }
+}
