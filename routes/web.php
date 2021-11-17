@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    return view('auth.verify')->with('success','Cache is cleared');
+});
+
+// Auth::routes(['verify' => true]);
 
 
-Route::group(['middleware' => ['auth']], function(){
+Route::middleware(['auth', 'verified'])->group( function(){
     Route::resource('dashboard', DashboardController::class); 
     Route::get('/logout', [DashboardController::class, 'signout']);
 
