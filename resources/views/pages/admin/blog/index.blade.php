@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    LapakBuah.com ~ Dashboard Product
+    LapakBuah.com ~ Dashboard Blog
 @endsection
 
 @section('content')
@@ -9,8 +9,8 @@
             data-aos="fade-up">
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">Product</h2>
-                <p class="dashboard-subtitle">Product yang akan menjadi icon di Halaman utama</p>
+                <h2 class="dashboard-title">Blog</h2>
+                <p class="dashboard-subtitle">Blog yang akan menjadi icon di Halaman utama</p>
               </div>
               <div class="dashboard-content">
                 {{-- @include('pages.role_management.navigasi_roles') --}}
@@ -39,11 +39,11 @@
                         <div class="box bg-white rounded shadow-sm p-3">
                             <div class="box-header">
                                 <div class="box-title w-100 d-flex flex-row justify-content-between">
-                                    <h3>List Product</h3>
+                                    <h3>List Blog</h3>
                                     <!-- @can('supplier-create') -->
                                     <!-- @endcan -->
                                 </div>
-                                <a class="btn btn-success" href="{{ route('blog.create') }}"> Add Product</a>
+                                <a class="btn btn-success" href="{{ route('blog.create') }}"> Add Blog</a>
                             </div>
                             <hr>
                             <div class="box-body mt-3">
