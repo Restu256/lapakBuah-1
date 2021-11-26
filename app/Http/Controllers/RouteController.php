@@ -26,7 +26,7 @@ class RouteController extends Controller
         if (request()->ajax()) {
             $query = Permission::all();
             // dd($query);
-            $pesan = 'apakah yakinmau menghapus!';
+            $pesan = 'apakah yakin mau menghapus!';
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '

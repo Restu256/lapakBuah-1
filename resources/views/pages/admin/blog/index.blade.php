@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    LapakBuah.com ~ Dashboard Suppliers
+    LapakBuah.com ~ Dashboard Product
 @endsection
 
 @section('content')
@@ -9,8 +9,8 @@
             data-aos="fade-up">
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">Category Product</h2>
-                <p class="dashboard-subtitle">Category Product yang akan menjadi icon di tampilan awal</p>
+                <h2 class="dashboard-title">Product</h2>
+                <p class="dashboard-subtitle">Product yang akan menjadi icon di Halaman utama</p>
               </div>
               <div class="dashboard-content">
                 {{-- @include('pages.role_management.navigasi_roles') --}}
@@ -39,42 +39,43 @@
                         <div class="box bg-white rounded shadow-sm p-3">
                             <div class="box-header">
                                 <div class="box-title w-100 d-flex flex-row justify-content-between">
-                                    <h3>List Category</h3>
+                                    <h3>List Product</h3>
                                     <!-- @can('supplier-create') -->
                                     <!-- @endcan -->
                                 </div>
-                                <a class="btn btn-success" href="{{ route('category.create') }}"> Add Category</a>
+                                <a class="btn btn-success" href="{{ route('blog.create') }}"> Add Product</a>
                             </div>
                             <hr>
                             <div class="box-body mt-3">
-                                    <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
+                                    <table class="table table-hover table-responsive scroll-horizontal-vertical w-100" id="crudTable2">
                                         <thead>
                                             <tr>
                                                 <th>no</th>
-                                                <th>Image</th>
-                                                <th>Name of Category</th>
-                                                <th>Slug</th>
+                                                <th>Title</th>
+                                                <th>Category</th>
+                                                <th>date</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        @foreach ($data as $key => $category)
+                                       
                                         <tbody>
+                                        @foreach ($data as $key => $blog)
                                    <tr>
                                      <td>{{ ++$i }}</td>
-                                     <td><img src="{{ asset('storage/' .$category->image_category) }}" class="img-fluid"></td>
-                                     <td>{{ $category->name_category }}</td>
-                                     <td>{{ $category->slug }}</td>
+                                     <td>{{ $blog->judul_blog }}</td>
+                                     <td>{{ $blog->category->category }}</td>
+                                     <td>{{ $blog->tanggal_pembuatan }}</td>
                                      <td>
-                                       @if(!empty($category->getRoleNames()))
-                                         @foreach($category->getRoleNames() as $v)
+                                       @if(!empty($blog->getRoleNames()))
+                                         @foreach($blog->getRoleNames() as $v)
                                             <label class="badge badge-success">{{ $v }}</label>
                                          @endforeach
                                        @endif
                                      </td>
                                      <td>
-                                        <!-- <a class="btn btn-info" href="{{ route('category.show',$category->id) }}">Show</a> -->
-                                        <a class="btn btn-primary" href="{{ route('category.edit',$category->id) }}">Edit</a>
-                                        <a class="btn btn-danger" href="{{ route('category.destroy',$category->id) }}">Hapus</a>
+                                     <a class="btn btn-success" href="{{ route('blog.show',$blog->id) }}">Show</a>
+                                        <a class="btn btn-primary" href="{{ route('blog.edit',$blog->id) }}">Edit</a>
+                                        <a class="btn btn-danger" href="{{ route('blog.destroy',$blog->id) }}">Hapus</a>
                                      </td>
                                    </tr>
                                   @endforeach
@@ -89,30 +90,36 @@
     </div>
 @endsection
 <!-- @push('addon-script')
-<script> 
-
-  //  var datatable = $('#crudTable').DataTable({
-  //           processing: true,
-  //           serverSide: true,
-  //           ordering: true,
-  //           responsive: true,
-  //           autoWidth : true,
-  //           ajax: {
-  //               url: '{!! url()->current() !!}',
-  //           },
-  //           columns: [
-  //               { data: 'DT_RowIndex', name:'DT_RowIndex'},
-  //               { data: 'image_category', name: 'image_category' },
-  //               { data: 'name_category', name: 'name_category' },
-  //               { data: 'slug', name: 'slug' },
-  //               {
-  //                   data: 'action',
-  //                   name: 'action',
-  //                   orderable: false,
-  //                   searchable: false,
-  //                   width: '15%'
-  //               },
-  //           ]
-  //       });
-  //       </script>
-           @endpush -->
+<script>
+   var datatable = $('#crudTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ordering: true,
+            responsive: true,
+            autoWidth : true,
+            ajax: {
+                url: '{!! url()->current() !!}',
+            },
+            columns: [
+                { data: 'DT_RowIndex', name:'DT_RowIndex'},
+                { data: 'nama_product', name: 'nama_product' },
+                { data: 'category_id', name: 'name_category' },
+                { data: 'satuan', name: 'satuan' },
+                { data: 'harga_beli', name: 'harga_beli' },
+                { data: 'harga_jual', name: 'harga_jual' },
+                { data: 'qty', name: 'qty' },
+                { data: 'berat', name: 'berat' },
+                { data: 'diskon', name: 'diskon' },
+                { data: 'description', name: 'description' },
+                { data: 'slug', name: 'slug' },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false,
+                    width: '15%'
+                },
+            ]
+        });
+        </script>
+        @endpush -->

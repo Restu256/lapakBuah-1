@@ -1,6 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\ImageBlogController;
+use App\Http\Controllers\Admin\ImageProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RouteController;
@@ -40,5 +46,10 @@ Route::middleware(['auth', 'verified'])->group( function(){
     Route::resource('routes', RouteController::class);
 
     Route::resource('supplier', SupplierController::class);
-
+    Route::resource('category', CategoryController::class);
+    Route::resource('category_blog', BlogCategoryController::class);
+    Route::resource('product', ProductController::class);
+    Route::resource('imageproduct', ImageProductController::class);
+    Route::resource('blog', BlogController::class);
+    Route::resource('imageblog', ImageBlogController::class);
 });

@@ -9,8 +9,8 @@
             data-aos="fade-up">
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">Category Product</h2>
-                <p class="dashboard-subtitle">Category Product yang akan menjadi icon di tampilan awal</p>
+                <h2 class="dashboard-title">Category Blog</h2>
+                <p class="dashboard-subtitle">Category Blog yang akan menjadi icon di tampilan awal</p>
               </div>
               <div class="dashboard-content">
                 {{-- @include('pages.role_management.navigasi_roles') --}}
@@ -43,7 +43,7 @@
                                     <!-- @can('supplier-create') -->
                                     <!-- @endcan -->
                                 </div>
-                                <a class="btn btn-success" href="{{ route('category.create') }}"> Add Category</a>
+                                <a class="btn btn-success" href="{{ route('category_blog.create') }}"> Add Category</a>
                             </div>
                             <hr>
                             <div class="box-body mt-3">
@@ -52,7 +52,7 @@
                                             <tr>
                                                 <th>no</th>
                                                 <th>Image</th>
-                                                <th>Name of Category</th>
+                                                <th>Category</th>
                                                 <th>Slug</th>
                                                 <th>Action</th>
                                             </tr>
@@ -61,8 +61,8 @@
                                         <tbody>
                                    <tr>
                                      <td>{{ ++$i }}</td>
-                                     <td><img src="{{ asset('storage/' .$category->image_category) }}" class="img-fluid"></td>
-                                     <td>{{ $category->name_category }}</td>
+                                     <td><img src="{{ asset('storage/' .$category->image) }}" class="img-fluid"></td>
+                                     <td>{{ $category->category }}</td>
                                      <td>{{ $category->slug }}</td>
                                      <td>
                                        @if(!empty($category->getRoleNames()))
@@ -73,8 +73,8 @@
                                      </td>
                                      <td>
                                         <!-- <a class="btn btn-info" href="{{ route('category.show',$category->id) }}">Show</a> -->
-                                        <a class="btn btn-primary" href="{{ route('category.edit',$category->id) }}">Edit</a>
-                                        <a class="btn btn-danger" href="{{ route('category.destroy',$category->id) }}">Hapus</a>
+                                        <a class="btn btn-primary" href="{{ route('category_blog.edit',$category->id) }}">Edit</a>
+                                        <a class="btn btn-danger" href="{{ route('category_blog.destroy',$category->id) }}">Hapus</a>
                                      </td>
                                    </tr>
                                   @endforeach

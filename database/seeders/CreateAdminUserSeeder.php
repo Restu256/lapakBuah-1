@@ -20,8 +20,8 @@ class CreateAdminUserSeeder extends Seeder
         $user = User::create([
             'name' => 'IQBAL ZM',
             'username' => 'iqbalmz',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('admin'),
+            'email' => 'restudentas720@gmail.com',
+            'password' => Hash::make('201802104'),
             'jenis_kelamin' => 'Laki-laki',
             'tanggal_lahir' => '2000-11-03'
         ]);
@@ -38,8 +38,8 @@ class CreateAdminUserSeeder extends Seeder
         $user = User::create([
             'name' => 'Bale ZM',
             'username' => 'Balemz',
-            'email' => 'user@gmail.com',
-            'password' => Hash::make('user'),
+            'email' => 'restudentas801@gmail.com',
+            'password' => Hash::make('restudentas25%'),
             'jenis_kelamin' => 'Laki-laki',
             'tanggal_lahir' => '2000-11-03'
         ]);

@@ -9,8 +9,8 @@
             data-aos="fade-up">
             <div class="container-fluid">
               <div class="dashboard-heading">
-              <h2 class="dashboard-title">Category Product</h2>
-                <p class="dashboard-subtitle">Category Product yang akan menjadi icon di tampilan awal</p>
+              <h2 class="dashboard-title">Category Blog</h2>
+                <p class="dashboard-subtitle">Category Blog yang akan menjadi icon di tampilan awal</p>
               </div>
               <div class="dashboard-content">
                 {{-- @include('pages.role_management.navigasi_roles') --}}
@@ -36,23 +36,23 @@
                                 </h3>
                             </div>
                             <div class="card-body p-3">
-                                <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('category_blog.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group">
-                                        <label for="image_category">Image</label>
+                                        <label for="image">Image</label>
                                         <img class="img-preview img-fluid mb-3 col-sm-5">
-                                        <input class="form-control @error('image_category') is-valid @enderror" type="file" name="image_category" id="image_category" onchange="previewImage()">
-                                        @error('image_category')
+                                        <input class="form-control @error('image') is-valid @enderror" type="file" name="image" id="image" onchange="previewImage()">
+                                        @error('image')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="name_category">Category</label>
-                                        <input type="text" class="form-control" name="name_category" id="name_category" value="{{ old('name_category') }}">
-                                        @error('name_category')
+                                        <label for="category">Category</label>
+                                        <input type="text" class="form-control" name="category" id="category" value="{{ old('category') }}">
+                                        @error('category')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -79,7 +79,7 @@
     @push('addon-script')
     <script>
         function previewImage() {
-        const image = document.querySelector('#image_category');
+        const image = document.querySelector('#image');
         const imgPreview = document.querySelector('.img-preview');
     
         imgPreview.style.display = 'block';

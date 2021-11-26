@@ -14,7 +14,14 @@
     @stack('prepend-style')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     
-    
+    <link rel="stylesheet" type="text/css" href="/style/trix.css">
+    <script type="text/javascript" src="/script/trix.js"></script>
+   
+   <style>
+    trix-toolbar [data-trix-button-group="file-tools"]{
+      display:none;
+    }
+    </style>
     <!-- icon fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
@@ -38,28 +45,28 @@
           </div>
           <div class="list-group list-group-flush">
             <a
-              href="#"
+              href="{{ route('dashboard.index') }}"
               class="list-group-item list-group-item-action "
             >
             <i class="fa fa-home fa-lg mr-2" aria-hidden="true"></i>
               Dashbord
             </a>
             <a
-              href="#"
+              href="{{ route('product.index') }}"
               class="list-group-item list-group-item-action"
             >
             <i class="fa fa-product-hunt fa-lg mr-2" aria-hidden="true"></i>
               Products
             </a>
             <a
-              href="#"
+              href="{{ route('imageproduct.index') }}"
               class="list-group-item list-group-item-action "
             >
             <i class="fa fa-file-image-o fa-lg mr-2" aria-hidden="true"></i>
               Products Gallery
             </a>
             <a
-              href="#"
+              href="{{ route('category.index') }}"
               class="list-group-item list-group-item-action "
             >
             <i class="fa fa-object-group fa-lg mr-2" aria-hidden="true"></i>
@@ -97,6 +104,27 @@
                 Role Management
               </a>
             @endcan
+            <a
+              href="{{ route('blog.index') }}"
+              class="list-group-item list-group-item-action"
+            >
+            <i class="fa fa-newspaper-o fa-lg mr-2" aria-hidden="true"></i>
+              Blog
+            </a>
+            <a
+              href="{{ route('category_blog.index') }}"
+              class="list-group-item list-group-item-action"
+            >
+            <i class="fa fa-list-alt fa-lg mr-2" aria-hidden="true"></i>
+              Blog Category
+            </a>
+            <a
+              href="{{ route('imageblog.index') }}"
+              class="list-group-item list-group-item-action"
+            >
+            <i class="fa fa-object-group fa-lg mr-2" aria-hidden="true"></i>
+              Blog Gallery
+            </a>
             <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action">
               <i class="fa fa-sign-out fa-lg mr-2" aria-hidden="true"></i>
               Sign Out
@@ -196,6 +224,10 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
       });
+
+      document.addEventListener('trix-file-accept', function(e){
+        e.preventDefault();
+        });
     </script>
     @stack('addon-script')
   </body>
