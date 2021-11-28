@@ -1,13 +1,21 @@
 .component-categories {
     background: #F4F4F4;
     border-radius: 8px;
-    padding: 20px 20px 10px 20px;
+    padding: 10px 10px 5px 10px;
     margin-bottom: 20px;
     transition: all 0.2s ease-in-out;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     &:hover {
         transform: scale(1.05);
         text-decoration: none;
+    }
+    @include media-breakpoint-up(md) {
+        background: #F4F4F4;
+        border-radius: 8px;
+        padding: 20px 20px 10px 20px;
+        margin-bottom: 20px;
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
     .categories-image {
         width: 100%;
@@ -18,10 +26,17 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
     .categories-text {
-        font-size: 18px;
+        font-size: 16px;
         text-align: center;
         color: #0c0d36;
         font-weight: normal;
-        margin-top: 12px;
+        margin-top: 8px;
+        @include media-breakpoint-up(md) {
+            font-size: 18px;
+            text-align: center;
+            color: #0c0d36;
+            font-weight: normal;
+            margin-top: 12px;
+        }
     }
 }

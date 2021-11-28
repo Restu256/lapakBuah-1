@@ -8,7 +8,6 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="shortcut icon" href="images/logo_lapak_buah/Logo-web-lapakbuah 1.png" type="image/x-icon">
 
     <title>@yield('title')</title>
 
@@ -20,7 +19,7 @@
 
   <body>
     {{-- Navbar --}}
-    @include('includes.navbar')
+    @include('includes.navbar-auth')
 
     {{-- Page Content --}}
     @yield('content')

@@ -6955,10 +6955,18 @@ a.close.disabled {
 
 .carousel-control-prev {
   left: 0;
+  height: 100%;
+  width: 10%;
+  background-image: -webkit-gradient(linear, left top, right top, from(#28a745), to(rgba(40, 167, 69, 0.001)));
+  background-image: linear-gradient(90deg, #28a745, rgba(40, 167, 69, 0.001));
 }
 
 .carousel-control-next {
   right: 0;
+  height: 100%;
+  width: 10%;
+  background-image: -webkit-gradient(linear, right top, left top, from(#28a745), to(rgba(40, 167, 69, 0.001)));
+  background-image: linear-gradient(270deg, #28a745, rgba(40, 167, 69, 0.001));
 }
 
 .carousel-control-prev-icon,
@@ -7001,8 +7009,9 @@ a.close.disabled {
   -webkit-box-flex: 0;
       -ms-flex: 0 1 auto;
           flex: 0 1 auto;
-  width: 30px;
-  height: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   margin-right: 3px;
   margin-left: 3px;
   text-indent: -999px;
@@ -7025,6 +7034,9 @@ a.close.disabled {
 
 .carousel-indicators .active {
   opacity: 1;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
 }
 
 .carousel-caption {

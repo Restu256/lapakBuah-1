@@ -8,7 +8,6 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="shortcut icon" href="images/logo_lapak_buah/Logo-web-lapakbuah 1.png" type="image/x-icon">
 
     <title>@yield('title')</title>
 
@@ -19,14 +18,24 @@
   </head>
 
   <body>
-    {{-- Navbar --}}
-    @include('includes.navbar')
+    
 
     {{-- Page Content --}}
     @yield('content')
     
     {{-- Footer --}}
-    @include('includes.footer')
+    {{-- @include('includes.footer') --}}
+    <footer>
+      <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="pt-4 pb-2">
+                    © 2021 Ecommerce theme by Iqbal Zaenal & Restu Dentas
+                </p>
+            </div>
+        </div>
+    </div>
+    </footer>
 
     {{-- Script --}}
     @stack('prepend-script')
