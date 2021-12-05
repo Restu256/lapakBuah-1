@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ImageBlogController;
 use App\Http\Controllers\Admin\ImageProductController;
+use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController as ControllersCategoryController;
 use App\Http\Controllers\DashboardController;
@@ -31,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/success', [HomeController::class, 'success']);
+Route::post('logged_in', [LoginController::class, 'authenticate']);
 
 Route::get('category_front', [ControllersCategoryController::class, 'index']);
 Route::get('cart_front', [CartController::class, 'index']);
@@ -50,6 +51,8 @@ Route::get('/clear-cache', function() {
 
 
 Route::middleware(['auth', 'verified'])->group( function(){
+    Route::get('/home', [HomeController::class, 'index']);
+    Route::get('/success', [HomeController::class, 'success']);
     Route::resource('dashboard', DashboardController::class); 
     Route::get('/logout', [DashboardController::class, 'signout']);
 

@@ -30,7 +30,7 @@ LapakBuah.com ~ Edit Category Product
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="box bg-white rounded shadow-sm p-3">
                             <div class="box-header">
                                 <div class="box-title w-100 d-flex flex-row justify-content-between">
@@ -56,7 +56,7 @@ LapakBuah.com ~ Edit Category Product
                                                     <label for="image_category">Image</label>
                                                     <input type="hidden" name="oldImage" value="{{ $category->image_category }}">
                                                     @if($category->image_category)
-                                                    <img src="{{ asset('storage/'. $category->image_category) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                                    <img src="{{ asset('storage/'. $category->image_category) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block w-50">
                                                     @else
                                                     <img class="img-preview img-fluid mb-3 col-sm-5">
                                                     @endif

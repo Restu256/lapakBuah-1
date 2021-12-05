@@ -36,7 +36,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box bg-white rounded shadow-sm p-3">
+                        <div class="box bg-white rounded shadow-sm p-3 mb-5">
                             <div class="box-header">
                                 <div class="box-title w-100 d-flex flex-row justify-content-between">
                                     <h3>List Category</h3>
@@ -57,27 +57,8 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        @foreach ($data as $key => $category)
                                         <tbody>
-                                   <tr>
-                                     <td>{{ ++$i }}</td>
-                                     <td><img src="{{ asset('storage/' .$category->image_category) }}" class="img-fluid"></td>
-                                     <td>{{ $category->name_category }}</td>
-                                     <td>{{ $category->slug }}</td>
-                                     <td>
-                                       @if(!empty($category->getRoleNames()))
-                                         @foreach($category->getRoleNames() as $v)
-                                            <label class="badge badge-success">{{ $v }}</label>
-                                         @endforeach
-                                       @endif
-                                     </td>
-                                     <td>
-                                        <!-- <a class="btn btn-info" href="{{ route('category.show',$category->id) }}">Show</a> -->
-                                        <a class="btn btn-primary" href="{{ route('category.edit',$category->id) }}">Edit</a>
-                                        <a class="btn btn-danger" href="{{ route('category.destroy',$category->id) }}">Hapus</a>
-                                     </td>
-                                   </tr>
-                                  @endforeach
+                                   
                                         </tbody>
                                     </table>
                             </div>
@@ -88,31 +69,31 @@
         </div>
     </div>
 @endsection
-<!-- @push('addon-script')
+@push('addon-script')
 <script> 
 
-  //  var datatable = $('#crudTable').DataTable({
-  //           processing: true,
-  //           serverSide: true,
-  //           ordering: true,
-  //           responsive: true,
-  //           autoWidth : true,
-  //           ajax: {
-  //               url: '{!! url()->current() !!}',
-  //           },
-  //           columns: [
-  //               { data: 'DT_RowIndex', name:'DT_RowIndex'},
-  //               { data: 'image_category', name: 'image_category' },
-  //               { data: 'name_category', name: 'name_category' },
-  //               { data: 'slug', name: 'slug' },
-  //               {
-  //                   data: 'action',
-  //                   name: 'action',
-  //                   orderable: false,
-  //                   searchable: false,
-  //                   width: '15%'
-  //               },
-  //           ]
-  //       });
-  //       </script>
-           @endpush -->
+  var datatable = $('#crudTable').DataTable({
+           processing: true,
+           serverSide: true,
+           ordering: true,
+           responsive: true,
+           autoWidth : true,
+           ajax: {
+               url: '{!! url()->current() !!}',
+           },
+           columns: [
+               { data: 'DT_RowIndex', name:'DT_RowIndex'},
+               { data: 'image', name: 'image' },
+               { data: 'name_category', name: 'name_category' },
+               { data: 'slug', name: 'slug' },
+               {
+                   data: 'action',
+                   name: 'action',
+                   orderable: false,
+                   searchable: false,
+                   width: '15%'
+               },
+           ]
+       });
+       </script>
+@endpush

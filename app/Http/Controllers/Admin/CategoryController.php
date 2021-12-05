@@ -22,43 +22,46 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-        $data = Category::orderBy('id','DESC')->paginate(5);
-        return view('pages.admin.category_product.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        // $data = Category::all();
+        // return view('pages.admin.category_product.index',compact('data'))
+        //     ->with('i', ($request->input('page', 1) - 1) * 5);
 
-        // if (request()->ajax()) {
-        //     $query = Category::all();
-        //     return DataTables::of($query)
-        //         ->addColumn('action', function ($item) {
-        //             return '
-        //                 <div class="btn-group">
-        //                     <div class="dropdown">
-        //                         <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
-        //                             type="button" id="action' .  $item->id . '"
-        //                                 data-toggle="dropdown" 
-        //                                 aria-haspopup="true"
-        //                                 aria-expanded="false">
-        //                                 Aksi
-        //                         </button>
-        //                         <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '" style="border-radius:10px 0px 10px 10px; margin:10px;">
-        //                             <a class="dropdown-item" href="' . route('product.edit', $item->id) . '">
-        //                                 Sunting
-        //                             </a>
-        //                             <form action="' . route('product.destroy', $item->id) . '" method="POST">
-        //                                 ' . method_field('delete') . csrf_field() . '
-        //                                 <button type="submit" class="dropdown-item text-danger">
-        //                                     Hapus
-        //                                 </button>
-        //                             </form>
-        //                         </div>
-        //                     </div>
-        //             </div>';
-        //         })
-        //         ->rawColumns(['action'])
-        //         ->addIndexColumn()
-        //         ->make();
-        // }
-        // return view('pages.admin.category_product.index');
+        if (request()->ajax()) {
+            $query = Category::all();
+            return DataTables::of($query)
+                ->addColumn('action', function ($item) {
+                    return '
+                        <div class="btn-group">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
+                                    type="button" id="action' .  $item->id . '"
+                                        data-toggle="dropdown" 
+                                        aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Aksi
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '" style="border-radius:10px 0px 10px 10px; margin:10px;">
+                                    <a class="dropdown-item" href="' . route('category.edit', $item->id) . '">
+                                        Sunting
+                                    </a>
+                                    <form action="' . route('category.destroy', $item->id) . '" method="POST">
+                                        ' . method_field('delete') . csrf_field() . '
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>';
+                })
+                ->addColumn('image', function ($item){
+                    return '<img src="'. Storage::url($item->image_category) . '" class="img-fluid">';
+                })
+                ->rawColumns(['action','image'])
+                ->addIndexColumn()
+                ->make();
+        }
+        return view('pages.admin.category_product.index');
     }
 
     public function create()
@@ -69,12 +72,12 @@ class CategoryController extends Controller
     public function store(Request $request)
 {
     $validatedData = $request->validate([
-        'image_category'    => 'required|image|file|max:1024|mimes:png,jpg,jpeg',
+        'image_category'    => 'required|image|file|max:1024|mimes:png,jpg,jpeg,svg',
         'name_category'     => 'required'
         
     ]);
     if  ($request->file('image_category')) {
-        $validatedData['image_category'] = $request->file('image_category')->store('category');
+        $validatedData['image_category'] = $request->file('image_category')->store('assets/category', 'public');
         $validatedData['slug'] = $request->name_category;
 
     }
@@ -89,49 +92,47 @@ class CategoryController extends Controller
     }
 }
 
-public function edit(Category $category)
-{
-    return view('pages.admin.category_product.edit', compact('category'));
-    // dd($category);
-}
+    public function edit(Category $category)
+    {
+        return view('pages.admin.category_product.edit', compact('category'));
+    }
 
-public function update(Request $request, Category $category)
-{
-    $rules = [
-        'image_category' => 'required|image|file|max:1024|mimes:png,jpg,jpeg',
-        'name_category'  => 'required',
-        'slug'           => 'required'
-    ];
+    public function update(Request $request, Category $category)
+    {
+        $rules = [
+            'image_category' => 'image|file|max:1024|mimes:png,jpg,jpeg,svg',
+            'name_category'  => 'required',
+            'slug'           => 'required'
+        ];
+        
+        $validatedData = $request->validate($rules);
 
-    
-    $validatedData = $request->validate($rules);
-
-    if  ($request->file('image_category')) {
-        if ($request->oldImage){
-            Storage::delete($request->oldImage);
+        if (!empty($request->image_category)) {
+            Storage::disk('local')->delete('public/'. $request->oldImage);
+            $validatedData['image_category'] = $request->file('image_category')->store('assets/category', 'public');
+            $categorySave = Category::where('id', $category->id)->update($validatedData);
+        }else{
+            $categorySave = Category::where('id', $category->id)->update($validatedData);
         }
-        $validatedData['image_category'] = $request->file('image_category')->store('category');
-    }
-    //get data Category by ID
-    Category::where('id', $category->id)->update($validatedData);
+        //get data Category by ID
 
 
-    if($category){
-        //redirect dengan pesan sukses
-        return redirect()->route('category.index')->with(['success' => 'Data Berhasil Diupdate!']);
-    }else{
-        //redirect dengan pesan error
-        return redirect()->route('category.index')->with(['error' => 'Data Gagal Diupdate!']);
+        if($categorySave){
+            //redirect dengan pesan sukses
+            return redirect()->route('category.index')->with(['success' => 'Data Berhasil Diupdate!']);
+        }else{
+            //redirect dengan pesan error
+            return redirect()->route('category.index')->with(['error' => 'Data Gagal Diupdate!']);
+        }
     }
-}
 
-public function destroy(Category $category)
-{
-    if($category->image_category) {
-        Storage::delete($request->image_category);
+    public function destroy(Category $category)
+    {
+        if($category->image_category) {
+            Storage::disk('local')->delete('public/'. $category->image_category);
+        }
+        Category::destroy($category->id);
+        return redirect()->route('category.index')->with(['success' => 'Category has been deleted!']);
     }
-    Category::destroy($category->id);
-    return redirect()->route('category.index')->with(['success' => 'Category has been deleted!']);
-}
 
 }

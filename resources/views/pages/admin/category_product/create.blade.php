@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="card">
                             <div class="card header p-3">
                                 <h3>
@@ -41,7 +41,7 @@
 
                                 <div class="form-group">
                                         <label for="image_category">Image</label>
-                                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                                        <img class="img-preview img-fluid mb-3 col-sm-5 w-50">
                                         <input class="form-control @error('image_category') is-valid @enderror" type="file" name="image_category" id="image_category" onchange="previewImage()">
                                         @error('image_category')
                                         <div class="invalid-feedback">

@@ -17,7 +17,7 @@
                 Belanja kebutuhan utama,<br />
                 lebih mudah
               </h2>
-              <form method="POST" action="{{ route('login') }}" class="mt-3 justify-content-center">
+              <form method="POST" action="{{ url('logged_in') }}" class="mt-3 justify-content-center">
                 @csrf
                 <div class="form-group col-md-12">
                   <label for="">Email Address</label>
