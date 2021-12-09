@@ -51,13 +51,16 @@
             <i class="fa fa-home fa-lg mr-2" aria-hidden="true"></i>
               Dashbord
             </a>
+            @can('product-list')
             <a
-              href="{{ route('product.index') }}"
-              class="list-group-item list-group-item-action"
+            href="{{ route('product.index') }}"
+            class="list-group-item list-group-item-action"
             >
             <i class="fa fa-product-hunt fa-lg mr-2" aria-hidden="true"></i>
-              Products
-            </a>
+            Products
+          </a>
+          @endcan
+          @can('imageproduct-list')
             <a
               href="{{ route('imageproduct.index') }}"
               class="list-group-item list-group-item-action "
@@ -65,6 +68,8 @@
             <i class="fa fa-file-image-o fa-lg mr-2" aria-hidden="true"></i>
               Products Gallery
             </a>
+            @endcan
+            @can('category-list')
             <a
               href="{{ route('category.index') }}"
               class="list-group-item list-group-item-action "
@@ -72,6 +77,7 @@
             <i class="fa fa-object-group fa-lg mr-2" aria-hidden="true"></i>
               Categories
             </a>
+            @endcan
             <a
               href="#"
               class="list-group-item list-group-item-action "
@@ -104,6 +110,7 @@
                 Role Management
               </a>
             @endcan
+            @can('blog-list')
             <a
               href="{{ route('blog.index') }}"
               class="list-group-item list-group-item-action"
@@ -111,6 +118,8 @@
             <i class="fa fa-newspaper-o fa-lg mr-2" aria-hidden="true"></i>
               Blog
             </a>
+            @endcan
+            @can('category-list')
             <a
               href="{{ route('category_blog.index') }}"
               class="list-group-item list-group-item-action"
@@ -118,13 +127,16 @@
             <i class="fa fa-list-alt fa-lg mr-2" aria-hidden="true"></i>
               Blog Category
             </a>
+            @endcan
+            @can('image-list')
             <a
               href="{{ route('imageblog.index') }}"
               class="list-group-item list-group-item-action"
             >
             <i class="fa fa-object-group fa-lg mr-2" aria-hidden="true"></i>
-              Blog Gallery
+              Gallery Blog
             </a>
+            @endcan
             <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action">
               <i class="fa fa-sign-out fa-lg mr-2" aria-hidden="true"></i>
               Sign Out

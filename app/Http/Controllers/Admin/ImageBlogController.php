@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageBlogController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:image-list|image-create|image-edit|image-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:image-create', ['only' => ['create','store']]);
+         $this->middleware('permission:image-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:image-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         $data = ImageBlog::all();

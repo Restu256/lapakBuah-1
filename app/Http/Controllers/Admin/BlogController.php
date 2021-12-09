@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:blog-list|blog-create|blog-edit|blog-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:blog-create', ['only' => ['create','store']]);
+         $this->middleware('permission:blog-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:blog-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         $data = Blog::all();

@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageProductController extends Controller
 {
-    // function __construct()
-    // {
-    //      $this->middleware('permission:imageproduct-list|imageproduct-create|imageproduct-edit|imageproduct-delete', ['only' => ['index','store']]);
-    //      $this->middleware('permission:imageproduct-create', ['only' => ['create','store']]);
-    //      $this->middleware('permission:imageproduct-edit', ['only' => ['edit','update']]);
-    //      $this->middleware('permission:imageproduct-delete', ['only' => ['destroy']]);
-    // }
+    function __construct()
+    {
+         $this->middleware('permission:imageproduct-list|imageproduct-create|imageproduct-edit|imageproduct-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:imageproduct-create', ['only' => ['create','store']]);
+         $this->middleware('permission:imageproduct-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:imageproduct-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
         $data = ImageProduct::all();
