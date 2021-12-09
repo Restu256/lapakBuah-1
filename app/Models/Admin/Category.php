@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\admin\ProductModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
@@ -17,6 +18,6 @@ class Category extends Model
         'slug',
     ];
     function product() {
-        return $this->hasMany('App\Models\Admin\ProductModel');
+        return $this->hasMany(ProductModel::class, 'category_id');
     }
 }

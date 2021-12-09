@@ -157,32 +157,10 @@ data - aos = "fade-up" > <div class="container-fluid">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="description">Description</label>
-                                                    @error('description')
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
                                                     <input id="description" type="hidden" name="description" value="{{ old('description') }}">
                                                     <trix-editor input="description"></trix-editor>
-                                                    
-                                                    <!-- <input
-                                                        type="text"
-                                                        class="form-control"
-                                                        name="description"
-                                                        id="description"
-                                                        value="{{ old('description') }}"> -->
-                                                        <!-- @error('description')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                        @enderror -->
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="slug">Slug Category</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            name="slug"
-                                                            id="slug"
-                                                            value="{{ old('slug') }}"></div>
+                                                    
                                                         <div class="form-group">
                                                             <input type="submit" value="Simpan" class="btn btn-primary">
                                                                 <a href="{{ route('category.index') }}" class="btn btn-dark">

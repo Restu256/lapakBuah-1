@@ -89,21 +89,19 @@ LapakBuah.com ~ Edit Category Product
                                                                 @enderror
                                                             </div>
 
-                                                            <div class="form-group">
+                                                            {{-- <div class="form-group">
                                                                 <label class="font-weight-bold">Slug</label>
                                                                 <textarea
                                                                     class="form-control @error('slug') is-invalid @enderror"
                                                                     name="slug"
                                                                     rows="5"
                                                                     placeholder="Masukkan Slug">{{ old('slug', $category->slug) }}</textarea>
-
-                                                                <!-- error message untuk slug -->
                                                                 @error('slug')
                                                                 <div class="alert alert-danger mt-2">
                                                                     {{ $message }}
                                                                 </div>
                                                                 @enderror
-                                                            </div>
+                                                            </div> --}}
 
                                                             <button type="submit" class="btn btn-md btn-primary">UPDATE</button>
                                                             <button type="reset" class="btn btn-md btn-warning">RESET</button>

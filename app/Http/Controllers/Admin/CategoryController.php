@@ -22,10 +22,6 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-        // $data = Category::all();
-        // return view('pages.admin.category_product.index',compact('data'))
-        //     ->with('i', ($request->input('page', 1) - 1) * 5);
-
         if (request()->ajax()) {
             $query = Category::all();
             return DataTables::of($query)
@@ -74,15 +70,15 @@ class CategoryController extends Controller
     $validatedData = $request->validate([
         'image_category'    => 'required|image|file|max:1024|mimes:png,jpg,jpeg,svg',
         'name_category'     => 'required'
-        
     ]);
+
     if  ($request->file('image_category')) {
         $validatedData['image_category'] = $request->file('image_category')->store('assets/category', 'public');
         $validatedData['slug'] = $request->name_category;
-
     }
     
     Category::create($validatedData);
+
     if($validatedData){
         //redirect dengan pesan sukses
         return redirect()->route('category.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -102,20 +98,19 @@ class CategoryController extends Controller
         $rules = [
             'image_category' => 'image|file|max:1024|mimes:png,jpg,jpeg,svg',
             'name_category'  => 'required',
-            'slug'           => 'required'
         ];
         
         $validatedData = $request->validate($rules);
+        $validatedData['slug'] = $request->name_category;
 
         if (!empty($request->image_category)) {
             Storage::disk('local')->delete('public/'. $request->oldImage);
             $validatedData['image_category'] = $request->file('image_category')->store('assets/category', 'public');
             $categorySave = Category::where('id', $category->id)->update($validatedData);
         }else{
+            // $validatedData['slug'] = $request->name_category;
             $categorySave = Category::where('id', $category->id)->update($validatedData);
         }
-        //get data Category by ID
-
 
         if($categorySave){
             //redirect dengan pesan sukses
@@ -126,13 +121,22 @@ class CategoryController extends Controller
         }
     }
 
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        if($category->image_category) {
-            Storage::disk('local')->delete('public/'. $category->image_category);
+        $data = Category::findOrFail($id);
+
+        $image = $data->image_category;
+
+        if($image) {
+            Storage::disk('local')->delete('public/'. $image);
         }
-        Category::destroy($category->id);
-        return redirect()->route('category.index')->with(['success' => 'Category has been deleted!']);
+        $delete = $data->delete();
+
+        if ($delete) {
+            return redirect()->route('category.index')->with(['success' => 'Category has been deleted!']);
+        }else{
+            return redirect()->route('category.index')->with(['error' => 'Category has not deleted!']);
+        }
     }
 
 }

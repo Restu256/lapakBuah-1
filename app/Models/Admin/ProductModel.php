@@ -2,6 +2,7 @@
 
 namespace App\Models\admin;
 
+use App\Models\Admin\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
@@ -25,7 +26,7 @@ class ProductModel extends Model
     ];
 
     function category(){
-        return $this->belongsTo('App\Models\Admin\Category');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     function imageproduct() {
