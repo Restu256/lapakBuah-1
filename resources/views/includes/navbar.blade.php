@@ -27,7 +27,7 @@
                     <a class="nav-link" href="/register">Sign Up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-success nav-link px-4 text-white" href="/login">Sign In</a
+                    <a class="btn btn-primary nav-link px-4 text-white" href="/login">Sign In</a
                 >
               </li>
             @endguest
