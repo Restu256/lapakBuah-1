@@ -17,10 +17,9 @@ class CreateTabelCabang extends Migration
             $table->id();
             $table->string('nama_cabang');
             $table->text('alamat');
-            $table->string('kecamatan');
-            $table->string('kode_pos');
-            $table->integer('id_kota');
-            $table->integer('id_provinsi');
+            $table->text('address')->nullable();
+            $table->integer('provoncies_id')->nullable();
+            $table->integer('regencies_id')->nullable();
             $table->timestamps();
         });
     }
