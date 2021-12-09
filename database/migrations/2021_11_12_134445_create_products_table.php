@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->integer('diskon')->nullable();
             $table->text('description');
             $table->string('slug');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

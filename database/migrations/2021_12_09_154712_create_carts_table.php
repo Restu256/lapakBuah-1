@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTabelProvinsi extends Migration
+class CreateCartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateTabelProvinsi extends Migration
      */
     public function up()
     {
-        Schema::create('tabel_provinsi', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_provinsi');
+            $table->integer('products_id');
+            $table->integer('users_id');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateTabelProvinsi extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tabel_provinsi');
+        Schema::dropIfExists('carts');
     }
 }
