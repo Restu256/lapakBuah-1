@@ -147,12 +147,16 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="box p-3 bg-light rounded">
+                          <div class="row">
+
                             @forelse ($data->imageproduct as $item)
-                              <div class="col-md-4">
+                            
+                              <div class="col-md-3 mt-2">
                                 <div class="box">
-                                  <img src="{{ Storage::url($data->imageproduct->image) }}" alt="">
+                                  <img src="{{ Storage::url($item->image) }}" class="w-100" alt="">
                                 </div>
                               </div>
+                               
                             @empty
                             <div class="row" id="image_preview">
                               <div class="col-md-3 mt-2">
@@ -163,15 +167,23 @@
                                   </div>
                                 </div>
                               </div>
-                                  
                             </div>
                             @endforelse
+                            <div class="col-md-3 mt-2">
+                                <div class="box rounded d-flex flex-row justify-content-center" id="tommbol_add_image"  style="height: 150px">
+                                  <div class="isi-box mt-auto mb-auto text-center text-white">
+                                    <i class="fa fa-plus" style="font-size: 20px" aria-hidden="true"></i>
+                                    <p class="font-weight-bolder">Tambah Gambar</p>
+                                  </div>
+                                </div>
+                              </div> 
+                            </div>
                             <div class="row">
                               <div class="col-md-12">
                                 <form action="{{ route('imageproduct.store') }}" method="post" enctype="multipart/form-data">
                                   @csrf
                                   <input type="hidden" name="product_id" value="{{ $data->id }}">
-                                  <input type="file" name="image[]" id="upload_file" onchange="preview_image();" multiple style="display: none">
+                                  <input type="file" name="image[]" id="upload_file" onchange="preview_image();" multiple="multiple" style="display: none">
                                   <input type="submit" class="btn btn-success mt-3" value="Upload"/>
                                 </form>
                               </div>

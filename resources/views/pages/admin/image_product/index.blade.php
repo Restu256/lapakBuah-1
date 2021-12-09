@@ -62,14 +62,7 @@
                                    <tr>
                                      <td>{{ ++$i }}</td>
                                      <td>{{ $image->product->nama_product }}</td>
-                                     <td><img src="{{ asset('storage/' .$image->image) }}" class="img-fluid"></td>
-                                     <td>
-                                       @if(!empty($image->getRoleNames()))
-                                         @foreach($image->getRoleNames() as $v)
-                                            <label class="badge badge-success">{{ $v }}</label>
-                                         @endforeach
-                                       @endif
-                                     </td>
+                                     <td><img src="{{ Storage::url($image->image) }}" class="img-fluid w-50"></td>
                                      <td>
                                         <!-- <a class="btn btn-info" href="{{ route('category.show',$image->id) }}">Show</a> -->
                                         <a class="btn btn-primary" href="{{ route('imageproduct.edit',$image->id) }}">Edit</a>
