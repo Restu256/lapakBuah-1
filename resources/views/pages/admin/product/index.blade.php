@@ -47,7 +47,7 @@
                             </div>
                             <hr>
                             <div class="box-body mt-3">
-                                    <table class="table table-hover table-responsive scroll-horizontal-vertical w-100" id="crudTable2">
+                                    <table class="table table-hover table-responsive scroll-horizontal-vertical w-100" id="crudTable">
                                         <thead>
                                             <tr>
                                                 <th>no</th>
@@ -59,40 +59,38 @@
                                                 <th>Quantity</th>
                                                 <th>Berat</th>
                                                 <th>Diskon</th>
-                                                <th>Deskripsi</th>
-                                                <th>Slug</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                        
                                         <tbody>
-                                        @foreach ($data as $key => $product)
-                                   <tr>
-                                     <td>{{ ++$i }}</td>
-                                     <td>{{ $product->nama_product }}</td>
-                                     <td>{{ $product->category->name_category }}</td>
-                                     <td>{{ $product->satuan }}</td>
-                                     <td>{{ $product->harga_beli }}</td>
-                                     <td>{{ $product->harga_jual }}</td>
-                                     <td>{{ $product->qty }}</td>
-                                     <td>{{ $product->berat }}</td>
-                                     <td>{{ $product->diskon }}</td>
-                                     <td>{{ $product->description }}</td>
-                                     <td>{{ $product->slug }}</td>
-                                     <td>
-                                       @if(!empty($product->getRoleNames()))
-                                         @foreach($product->getRoleNames() as $v)
-                                            <label class="badge badge-success">{{ $v }}</label>
-                                         @endforeach
-                                       @endif
-                                     </td>
-                                     <td>
-                                     <a class="btn btn-success" href="{{ route('product.show',$product->id) }}">Show</a>
-                                        <a class="btn btn-primary" href="{{ route('product.edit',$product->id) }}">Edit</a>
-                                        <a class="btn btn-danger" href="{{ route('product.destroy',$product->id) }}">Hapus</a>
-                                     </td>
-                                   </tr>
-                                  @endforeach
+                                        {{-- @foreach ($data as $key => $product)
+                                          <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $product->nama_product }}</td>
+                                            <td>{{ $product->category->name_category }}</td>
+                                            <td>{{ $product->satuan }}</td>
+                                            <td>{{ $product->harga_beli }}</td>
+                                            <td>{{ $product->harga_jual }}</td>
+                                            <td>{{ $product->qty }}</td>
+                                            <td>{{ $product->berat }}</td>
+                                            <td>{{ $product->diskon }}</td>
+                                            <td>{{ $product->description }}</td>
+                                            <td>{{ $product->slug }}</td>
+                                            <td>
+                                              @if(!empty($product->getRoleNames()))
+                                                @foreach($product->getRoleNames() as $v)
+                                                    <label class="badge badge-success">{{ $v }}</label>
+                                                @endforeach
+                                              @endif
+                                            </td>
+                                            <td>
+                                            <a class="btn btn-success" href="{{ route('product.show',$product->id) }}">Show</a>
+                                                <a class="btn btn-primary" href="{{ route('product.edit',$product->id) }}">Edit</a>
+                                                <a class="btn btn-danger" href="{{ route('product.destroy',$product->id) }}">Hapus</a>
+                                            </td>
+                                          </tr>
+                                        @endforeach --}}
                                         </tbody>
                                     </table>
                             </div>
@@ -103,7 +101,7 @@
         </div>
     </div>
 @endsection
-<!-- @push('addon-script')
+@push('addon-script')
 <script>
    var datatable = $('#crudTable').DataTable({
             processing: true,
@@ -124,8 +122,6 @@
                 { data: 'qty', name: 'qty' },
                 { data: 'berat', name: 'berat' },
                 { data: 'diskon', name: 'diskon' },
-                { data: 'description', name: 'description' },
-                { data: 'slug', name: 'slug' },
                 {
                     data: 'action',
                     name: 'action',
@@ -136,4 +132,4 @@
             ]
         });
         </script>
-        @endpush -->
+        @endpush

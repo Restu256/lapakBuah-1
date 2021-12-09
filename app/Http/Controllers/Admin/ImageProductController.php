@@ -28,39 +28,39 @@ class ImageProductController extends Controller
         // return view('pages.admin.image_product.index',compact('data'))
         //     ->with('i', ($request->input('page', 1) - 1) * 5);
 
-        // if (request()->ajax()) {
-        //     $query = ImageProduct::all();
-        //     return DataTables::of($query)
-        //         ->addColumn('action', function ($item) {
-        //             return '
-        //                 <div class="btn-group">
-        //                     <div class="dropdown">
-        //                         <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
-        //                             type="button" id="action' .  $item->id . '"
-        //                                 data-toggle="dropdown" 
-        //                                 aria-haspopup="true"
-        //                                 aria-expanded="false">
-        //                                 Aksi
-        //                         </button>
-        //                         <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '" style="border-radius:10px 0px 10px 10px; margin:10px;">
-        //                             <a class="dropdown-item" href="' . route('product.edit', $item->id) . '">
-        //                                 Sunting
-        //                             </a>
-        //                             <form action="' . route('product.destroy', $item->id) . '" method="POST">
-        //                                 ' . method_field('delete') . csrf_field() . '
-        //                                 <button type="submit" class="dropdown-item text-danger">
-        //                                     Hapus
-        //                                 </button>
-        //                             </form>
-        //                         </div>
-        //                     </div>
-        //             </div>';
-        //         })
-        //         ->rawColumns(['action'])
-        //         ->addIndexColumn()
-        //         ->make();
-        // }
-        // return view('pages.admin.category_product.index');
+        if (request()->ajax()) {
+            $query = ImageProduct::all();
+            return DataTables::of($query)
+                ->addColumn('action', function ($item) {
+                    return '
+                        <div class="btn-group">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
+                                    type="button" id="action' .  $item->id . '"
+                                        data-toggle="dropdown" 
+                                        aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Aksi
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '" style="border-radius:10px 0px 10px 10px; margin:10px;">
+                                    <a class="dropdown-item" href="' . route('imageproduct.edit', $item->id) . '">
+                                        Sunting
+                                    </a>
+                                    <form action="' . route('imageproduct.destroy', $item->id) . '" method="POST">
+                                        ' . method_field('delete') . csrf_field() . '
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>';
+                })
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+                ->make();
+        }
+        return view('pages.admin.category_product.index');
     }
 
     public function create()
@@ -71,26 +71,53 @@ class ImageProductController extends Controller
     }
 
     public function store(Request $request)
-{
-    $validatedData = $request->validate([
-        'product_id'     => 'required',
-        'image'          => 'required|image|file|max:1024|mimes:png,jpg,jpeg',
-        
-    ]);
+    {
+        $data = $request->image;
+        $length = count($data); 
 
-    if  ($request->file('image')) {
-        $validatedData['image'] = $request->file('image')->store('imageproduct');
+        
+        for ($i=0; $i < $length ; $i++) {
+            $Image = new ImageProduct();
+            $Image->product_id       = $request->product_id;
+            $Image->image            = $request->image[$i];
+            $saveImage = $Image->save(); 
+        }
+
+        // dd($data[0]['-originalName']);
+        
+        // $files = [];
+        // foreach ($request->file('image') as $file) {
+        //     if ($file->isValid()) {
+        //         $file->move("multiuploads",$file->getClientOriginalName());
+        //         // save information to variable
+        //         // next will be saved to database
+        //         $files[] = [
+        //             'filename' => $file->getClientOriginalName(),
+        //         ];
+        //         dd($files);
+        //     }
+
+        // }
+        
+        // foreach ($data as $d) {
+            // dd($d);
+            // var_dump(count($d));
+
+            
+        // }
+
+        // if  ($request->file('image')) {
+        //     $validatedData['image_category'] = $request->file('image_category')->store('assets/category', 'public');
+        // }
+        
+        // ImageProduct::create($validatedData);
+        if($saveImage){
+            return redirect()->route('imageproduct.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        }else{
+            
+            return redirect()->route('imageproduct.index')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
-    
-    ImageProduct::create($validatedData);
-    if($validatedData){
-        //redirect dengan pesan sukses
-        return redirect()->route('imageproduct.index')->with(['success' => 'Data Berhasil Disimpan!']);
-    }else{
-        //redirect dengan pesan error
-        return redirect()->route('imageproduct.index')->with(['error' => 'Data Gagal Disimpan!']);
-    }
-}
 
 public function edit(ImageProduct $imageproduct)
 {
@@ -102,9 +129,7 @@ public function update(Request $request, ImageProduct $imageproduct)
     $rules = [
         'image' => 'required|image|file|max:1024|mimes:png,jpg,jpeg',
         'name'  => 'required',
-        'slug'           => 'required'
     ];
-
     
     $validatedData = $request->validate($rules);
 
@@ -115,10 +140,9 @@ public function update(Request $request, ImageProduct $imageproduct)
         $validatedData['image'] = $request->file('image')->store('product');
     }
     //get data Image Product by ID
-    ImageProduct::where('id', $imageproduct->id)->update($validatedData);
+    $update = ImageProduct::where('id', $imageproduct->id)->update($validatedData);
 
-
-    if($imageproduct){
+    if($update){
         //redirect dengan pesan sukses
         return redirect()->route('imageproduct.index')->with(['success' => 'Data Berhasil Diupdate!']);
     }else{
@@ -127,12 +151,22 @@ public function update(Request $request, ImageProduct $imageproduct)
     }
 }
 
-public function destroy(ImageProduct $imageproduct)
+public function destroy($id)
 {
-    if($imageproduct->image) {
-        Storage::delete($request->image);
+    $data = ImageProduct::findOrFail($id);
+
+    $file = $data->image;
+
+    if($file) {
+        Storage::disk('local')->delete('public/'. $file);
     }
-    ImageProduct::destroy($imageproduct->id);
-    return redirect()->route('imageproduct.index')->with(['success' => 'Image Product has been deleted!']);
+
+    $delete = $data->delete();
+
+    if ($delete) {
+        return redirect()->route('imageproduct.index')->with(['success' => 'Image Product has been deleted!']);
+    }else{
+        return redirect()->route('imageproduct.index')->with(['error' => 'Image Product has not deleted!']);
+    }
 }
 }
