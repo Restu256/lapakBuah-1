@@ -62,62 +62,40 @@ class ImageProductController extends Controller
         }
         return view('pages.admin.category_product.index');
     }
-
+    
     public function create()
     {
         $product = ProductModel::get();
         return view('pages.admin.image_product.create', ['product' => $product]);
         // return view('pages.admin.image_product.create');
     }
-
+    
     public function store(Request $request)
     {
-        $data = $request->image;
-        $length = count($data); 
-
-        
-        for ($i=0; $i < $length ; $i++) {
-            $Image = new ImageProduct();
-            $Image->product_id       = $request->product_id;
-            $Image->image            = $request->image[$i];
-            $saveImage = $Image->save(); 
-        }
-
-        // dd($data[0]['-originalName']);
-        
-        // $files = [];
-        // foreach ($request->file('image') as $file) {
-        //     if ($file->isValid()) {
-        //         $file->move("multiuploads",$file->getClientOriginalName());
-        //         // save information to variable
-        //         // next will be saved to database
-        //         $files[] = [
-        //             'filename' => $file->getClientOriginalName(),
-        //         ];
-        //         dd($files);
-        //     }
-
-        // }
-        
-        // foreach ($data as $d) {
-            // dd($d);
-            // var_dump(count($d));
-
-            
-        // }
-
-        // if  ($request->file('image')) {
-        //     $validatedData['image_category'] = $request->file('image_category')->store('assets/category', 'public');
-        // }
-        
-        // ImageProduct::create($validatedData);
-        if($saveImage){
-            return redirect()->route('imageproduct.index')->with(['success' => 'Data Berhasil Disimpan!']);
-        }else{
-            
-            return redirect()->route('imageproduct.index')->with(['error' => 'Data Gagal Disimpan!']);
-        }
-    }
+        $validateData = $request->validate([
+            'product_id' => 'required',
+            'image'      => 'required',
+            'image.*'    => 'mimes:jpg,png,jpeg,gif,svg'
+            ]);
+            if($request->hasfile('image'))
+             {
+                foreach($request->file('image') as $key => $file)
+                {
+                    $path = $file->store('public/imageproduct');
+                    $name = $file->getClientOriginalName();
+                    $insert[$key]['image'] = $path;
+                    $insert[$key]['product_id'] = $request->product_id;
+                }
+             }
+            $saveimage = ImageProduct::insert($insert);
+     
+        if($saveimage){
+         return redirect()->route('imageproduct.index')->with(['success' => 'Data Berhasil Disimpan!']);
+     }else{
+         
+         return redirect()->route('imageproduct.index')->with(['error' => 'Data Gagal Disimpan!']);
+     }
+}
 
 public function edit(ImageProduct $imageproduct)
 {
