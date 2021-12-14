@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('jenis_kelamin');
             $table->date('tanggal_lahir');
             $table->text('address')->nullable();
-            $table->integer('provoncies_id')->nullable();
+            $table->integer('provincies_id')->nullable();
             $table->integer('regencies_id')->nullable();
             $table->integer('kode_pos')->nullable();
             $table->string('country')->nullable();

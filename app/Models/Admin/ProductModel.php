@@ -3,6 +3,7 @@
 namespace App\Models\admin;
 
 use App\Models\Admin\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
@@ -23,7 +24,12 @@ class ProductModel extends Model
         'diskon',
         'description',
         'slug',
+        'user_id'
     ];
+
+    function userId(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     function category(){
         return $this->belongsTo(Category::class, 'category_id');

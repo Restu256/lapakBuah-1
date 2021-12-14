@@ -54,14 +54,25 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <h1>Sofa Ternyaman</h1>
+                        <h1>{{ $product->nama_product }}</h1>
                         <div class="owner">By Iqbal Zaenal Mutaqin</div>
-                        <div class="price">$1.456</div>
+                        <div class="price">Rp. {{ number_format($product->harga_jual,0,',','. ')  }}/{{ $product->satuan }}</div>
                     </div>
                     <div class="col-lg-2" data-aos="zoom-in">
-                        <a href="/cart_front" class="btn btn-success px-4 text-white btn-block mb-3">
-              Add to Cart
-            </a>
+                        @auth
+                            <form action="{{ route('product-add', $product->id) }}" method="POST" enctype="multipart/form-data
+                            ">
+                            @csrf
+                                <button type="submit" class="btn btn-success px-4 text-white btn-block mb-3">
+                                Add to Cart
+                                </button>
+                            </form>
+                        @else
+                        <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
+                                <i class="fa fa-sign-in fa-lg" aria-hidden="true"></i>
+                                SignIn to Add
+                        </a>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -71,11 +82,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <p data-aos="zoom-in">
-                            The Nike Air Max 720 SE goes bigger than ever before with Nike's tallest Air unit yet for unimaginable, all-day comfort. There's super breathable fabrics on the upper, while colours add a modern edge.
-                        </p>
-                        <p data-aos="zoom-in">
-                            Bring the past into the future with the Nike Air Max 2090, a bold look inspired by the DNA of the iconic Air Max 90. Brand-new Nike Air cushioning underfoot adds unparalleled comfort while transparent mesh and vibrantly coloured details on the upper are
-                            blended with timeless OG features for an edgy, modernised look.
+                            {!! $product->description !!}
                         </p>
                     </div>
                 </div>
@@ -93,21 +100,21 @@
                     <div class="col-12 col-lg-8">
                         <ul class="list-unstyled">
                             <li class="media" data-aos="zoom-in">
-                                <img src="images/testimoni/icon-testimonial-1.png" class="mr-3 rounded-circle" alt="" />
+                                <img src="/images/testimoni/icon-testimonial-1.png" class="mr-3 rounded-circle" alt="" />
                                 <div class="media-body">
                                     <h5 class="mt-2 mb-1">Putri Octaviani</h5>
                                     I thought it was not good for living room. I really happy to decided buy this product last week now feels like homey.
                                 </div>
                             </li>
                             <li class="media" data-aos="zoom-in">
-                                <img src="images/testimoni/icon-testimonial-2.png" class="mr-3 rounded-circle" alt="" />
+                                <img src="/images/testimoni/icon-testimonial-2.png" class="mr-3 rounded-circle" alt="" />
                                 <div class="media-body">
                                     <h5 class="mt-2 mb-1">Faturahman Al Aziz</h5>
                                     Color is great with the minimalist concept. Even I thought it was made by Cactus industry. I do really satisfied with this.
                                 </div>
                             </li>
                             <li class="media" data-aos="zoom-in">
-                                <img src="images/testimoni/icon-testimonial-3.png" class="mr-3 rounded-circle" alt="" />
+                                <img src="/images/testimoni/icon-testimonial-3.png" class="mr-3 rounded-circle" alt="" />
                                 <div class="media-body">
                                     <h5 class="mt-2 mb-1">Grasia Purnawira</h5>
                                     When I saw at first, it was really awesome to have with. Just let me know if there is another upcoming product like this.
@@ -124,7 +131,7 @@
 
 @push('addon-script')
     <script src="/vendor/vue/vue.js"></script>
-    {{-- <script> 
+    <script> 
       var gallery = new Vue({
         el: "#gallery",
         mounted() {
@@ -133,10 +140,10 @@
         data: {
           activePhoto: 0,
           photos: [
-            @foreach($product->galleries as $gallery)
+            @foreach($product->imageproduct as $gallery)
               {
                 id: {{ $gallery->id }},
-                url: "{{ Storage::url($gallery->photos) }}",
+                url: "{{ Storage::url($gallery->image) }}",
               },
             @endforeach
           ],
@@ -147,8 +154,8 @@
           },
         },
       });
-    </script>  --}}
-    <script>
+    </script> 
+    {{-- <script>
       var gallery = new Vue({
           el: "#gallery",
           mounted() {
@@ -158,16 +165,16 @@
               activePhoto: 0,
               photos: [{
                   id: 1,
-                  url: "images/product-details/product-details-1.jpg",
+                  url: "/images/product-details/product-details-1.jpg",
               }, {
                   id: 2,
-                  url: "images/product-details/product-details-2.jpg",
+                  url: "/images/product-details/product-details-2.jpg",
               }, {
                   id: 3,
-                  url: "images/product-details/product-details-3.jpg",
+                  url: "/images/product-details/product-details-3.jpg",
               }, {
                   id: 4,
-                  url: "images/product-details/product-details-4.jpg",
+                  url: "/images/product-details/product-details-4.jpg",
               }, ],
           },
           methods: {
@@ -176,5 +183,5 @@
               },
           },
       });
-  </script>
+    </script> --}}
 @endpush

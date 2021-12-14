@@ -10,14 +10,17 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('pages.home');
+        // return view('pages.home');
 
-        // $categories = Category::all();
-        // $products = ProductModel::with(['imageproduct'])->take(6)->latest()->get();
-        // return view('pages.home', [
-        //     'categories' => $categories,
-        //     'products' => $products
-        // ]); 
+        $categories = Category::all();
+
+        // return response()->json();
+        // var_dump($products);
+        $products = ProductModel::query()->where('category_id', 1)->with(['imageproduct'])->take(6)->latest()->get();
+        return view('pages.home', [
+            'categories' => $categories,
+            'products' => $products
+        ]); 
     }
 
     public function success(){

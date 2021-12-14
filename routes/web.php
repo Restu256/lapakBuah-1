@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ImageProductController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController as ControllersCategoryController;
+use App\Http\Controllers\CategoryFrontController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\HomeController;
@@ -34,7 +35,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 Route::post('logged_in', [LoginController::class, 'authenticate']);
 
-Route::get('category_front', [ControllersCategoryController::class, 'index']);
+Route::get('category_front', [CategoryFrontController::class, 'index']);
+Route::get('/categories/{id}', [CategoryFrontController::class, 'detail'])->name('categories-detail');
+
+Route::get('/details/{id}', [DetailController::class, 'index'])->name('product-detail');
+Route::post('/details/{id}', [DetailController::class, 'add'])->name('product-add');
+
+
 Route::get('cart_front', [CartController::class, 'index']);
 Route::get('check_out', [CartController::class, 'check_out']);
 
@@ -67,4 +74,9 @@ Route::middleware(['auth', 'verified'])->group( function(){
     Route::resource('imageproduct', ImageProductController::class);
     Route::resource('blog', BlogController::class);
     Route::resource('imageblog', ImageBlogController::class);
+
+    Route::resource('cart', CartController::class);
+    Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
+
+
 });

@@ -158,15 +158,8 @@
                               </div>
                                
                             @empty
-                            <div class="row" id="image_preview">
-                              <div class="col-md-3 mt-2">
-                                <div class="box rounded d-flex flex-row justify-content-center" id="tommbol_add_image"  style="height: 150px">
-                                  <div class="isi-box mt-auto mb-auto text-center text-white">
-                                    <i class="fa fa-plus" style="font-size: 20px" aria-hidden="true"></i>
-                                    <p class="font-weight-bolder">Tambah Gambar</p>
-                                  </div>
-                                </div>
-                              </div>
+                            <div class="dek" id="image_preview">
+                              
                             </div>
                             @endforelse
                             <div class="col-md-3 mt-2">

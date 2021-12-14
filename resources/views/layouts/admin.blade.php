@@ -189,6 +189,11 @@
                     Hi, {{ Auth::user()->name }}
                   </a>
                   <div class="dropdown-menu shadow border-0" aria-labelledby="navbarDropdown" style="border-radius: 10px 0px 10px 10px;">
+                    <a class="dropdown-item" href="/">
+                      {{-- <i class="fa fa-sign-out fa-lg mr-2" aria-hidden="true"></i> --}}
+                      <i class="fa fa-shopping-cart fa-lg mr-2" aria-hidden="true"></i>
+                      Back to shop
+                    </a>
                     <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                       <i class="fa fa-sign-out fa-lg mr-2" aria-hidden="true"></i>
                       Logout
@@ -197,6 +202,19 @@
                       @csrf
                     </form>
                   </div>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('cart.index') }}" class="nav-link d-inline-block">
+                      @php
+                          $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
+                      @endphp
+                      @if ($carts > 0)
+                        <img src="/images/shopping-cart-filled.svg" alt="" />
+                        <div class="cart-badge">{{$carts}}</div>
+                      @else
+                        <img src="/images/shopping-cart-empty.svg" alt="" />
+                      @endif
+                  </a>
                 </li>
               </ul>
               <!-- Mobile Menu -->
@@ -209,6 +227,9 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                       @csrf
                     </form>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/"> Back to shop </a>
                 </li>
               </ul>
             </div>
