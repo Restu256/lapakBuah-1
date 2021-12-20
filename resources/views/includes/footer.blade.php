@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-4 col-12 d-flex justify-content-center">
                 <div class="d-flex flex-row justify-content-center mt-3">
-                    <img src="images/logo_lapak_buah/Logo-web-lapakbuah 1.png" alt="" class="image_footer">
+                    <img src="/images/logo_lapak_buah/Logo-web-lapakbuah 1.png" alt="" class="image_footer">
                 </div>
             </div>
             <div class="col-md-4 col-12 d-flex flex-column">

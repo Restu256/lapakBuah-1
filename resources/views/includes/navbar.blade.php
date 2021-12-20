@@ -16,7 +16,7 @@
                     <a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" href="/">Home </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('category_front')) ? 'active' : '' }}" href="/category_front">Categories</a>
+                    <a class="nav-link {{ Request::is('category_front') ? 'active' : '' }}" href="/category_front">Categories</a>
                 </li>
                 <li class="nav-item">
                     <input type="checkbox" id="button_search" class="checkbox-lg d-none" name="button_search" value="bayar nanti">
@@ -44,14 +44,14 @@
                 data-toggle="dropdown"
               >
                 <img
-                  src="images/user_pc.png"
+                  src="/images/user_pc.png"
                   alt=""
                   class="rounded-circle mr-2 profile-picture"
                 />
                 Hi, {{ Auth::user()->name }}
               </a>
                     <div class="dropdown-menu bg-white">
-                        <a href="dashboard" class="dropdown-item">Dashboard</a>
+                        <a href="{{ route('dashboard.index') }}" class="dropdown-item">Dashboard</a>
                         <a href="#" class="dropdown-item">Settings</a
                 >
                 <div class="dropdown-divider"></div>
@@ -62,32 +62,30 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link d-inline-block">
-                      <img src="/images/shopping-cart-filled.svg" alt="" />
-                      <div class="cart-badge">5</div>
-                {{-- @php
-                    // $carts = \App\Cart::where('users_id', Auth::user()->id)->count();
-                @endphp
-                @if ($carts > 0)
-                  <img src="/images/shopping-cart-filled.svg" alt="" />
-                  <div class="cart-badge">5</div>
-                @else
-                  <img src="/images/shopping-cart-empty.svg" alt="" />
-                @endif --}}
-              </a>
+                  <a href="{{ route('cart.index') }}" class="nav-link d-inline-block">
+                      @php
+                          $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
+                      @endphp
+                      @if ($carts > 0)
+                        <img src="/images/shopping-cart-filled.svg" alt="" />
+                        <div class="cart-badge">{{$carts}}</div>
+                      @else
+                        <img src="/images/shopping-cart-empty.svg" alt="" />
+                      @endif
+                  </a>
                 </li>
             </ul>
 
             <ul class="navbar-nav d-block d-lg-none">
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                Hi, {{ Auth::user()->name }}
-              </a>
+                      Hi, {{ Auth::user()->name }}
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link d-inline-block">
-                Cart
-              </a>
+                    <a href="{{ route('cart.index') }}" class="nav-link d-inline-block">
+                      Cart
+                    </a>
                 </li>
             </ul>
             @endauth

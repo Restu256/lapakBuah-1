@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\ProductModel;
 use App\Models\Admin\Category;
 use App\Models\Admin\ImageProduct;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Storage;
 
@@ -82,6 +83,7 @@ class ProductController extends Controller
 
         $data = $request->all();
         $data['slug'] = $request->nama_product;
+        $data['user_id'] = Auth::user()->id;
 
         $insert = ProductModel::create($data);
         if($insert){
@@ -126,6 +128,7 @@ public function update(Request $request, $id)
 
     $data = $request->all();
     $data['slug'] = $request->nama_product;
+    $data['user_id'] = Auth::user()->id;
     $item = ProductModel::findOrFail($id);
 
     $update = $item->update($data);
