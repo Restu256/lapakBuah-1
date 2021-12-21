@@ -3,6 +3,7 @@
 namespace App\Models\admin;
 
 use App\Models\Admin\Category;
+use App\Models\Admin\Stock;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -37,5 +38,8 @@ class ProductModel extends Model
 
     function imageproduct() {
         return $this->hasMany(imageproduct::class, 'product_id');
+    }
+    function stock() {
+        return $this->hasMany(Stock::class, 'products_id');
     }
 }

@@ -113,7 +113,7 @@ data - aos = "fade-up" > <div class="container-fluid">
                                                 </div>
                                                 @enderror
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label for="qty">Quantity</label>
                                                 <input
                                                     type="number"
@@ -126,7 +126,7 @@ data - aos = "fade-up" > <div class="container-fluid">
                                                         {{ $message }}
                                                     </div>
                                                     @enderror
-                                                </div>
+                                                </div> -->
                                                 <div class="form-group">
                                                     <label for="berat">Berat</label>
                                                     <input

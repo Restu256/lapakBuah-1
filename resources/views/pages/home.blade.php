@@ -114,7 +114,8 @@
                                         background-image: url('{{ Storage::url($product->imageproduct->first()->image) }}')
                                       @else
                                         background-color: #eee;
-                                      @endif"></div>
+                                      @endif">
+                                      </div>
                                 </div>
                                 <div class="product-keterangan">
                                     <div class="products-text">{{ $product->nama_product }}</div>
