@@ -111,7 +111,7 @@
                             <a href="{{ route('product-detail', $product->slug) }}" class="component-products d-block">
                                 <div class="products-thumbnail">
                                     <div class="products-image" style="@if ($product->imageproduct)
-                                        background-image: url('{{ Storage::url($product->imageproduct->first()->image) }}')
+                                        background-image: url('{!! Storage::url($product->imageproduct->first()->image) !!}')
                                       @else
                                         background-color: #eee;
                                       @endif">

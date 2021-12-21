@@ -38,7 +38,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6" data-aos="fade-up">
-                        <h5>Product {{ $slug }}</h5>
+                        <h5>Product</h5>
                     </div>
                 </div>
                 <div class="row">
