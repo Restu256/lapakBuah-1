@@ -16,7 +16,12 @@ class CreateTypeProducts extends Migration
         Schema::create('type_products', function (Blueprint $table) {
             $table->id();
             $table->string('type_products');
-            $table->string('qty');
+            $table->string('satuan');
+            $table->integer('harga_beli');
+            $table->integer('harga_jual');
+            $table->integer('qty');
+            $table->integer('berat');
+            $table->integer('diskon')->nullable();
             $table->timestamps();
         });
     }
