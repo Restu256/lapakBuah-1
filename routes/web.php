@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ImageBlogController;
 use App\Http\Controllers\Admin\ImageProductController;
 use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\Blog\HomeController as BlogHomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController as ControllersCategoryController;
 use App\Http\Controllers\CategoryFrontController;
@@ -32,11 +33,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [BlogHomeController::class, 'index']);
+
+Route::get('/blog', [HomeController::class, 'index']);
 Route::post('logged_in', [LoginController::class, 'authenticate']);
 
 Route::get('category_front', [CategoryFrontController::class, 'index']);
-Route::get('/categories/{id}', [CategoryFrontController::class, 'detail'])->name('categories-detail');
+Route::get('categories/{id}', [CategoryFrontController::class, 'detail'])->name('categories-detail');
 
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('product-detail');
 Route::post('/details/{id}', [DetailController::class, 'add'])->name('product-add');
