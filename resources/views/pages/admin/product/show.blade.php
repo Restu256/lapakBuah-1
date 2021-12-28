@@ -153,20 +153,26 @@
                             
                               <div class="col-md-3 mt-2">
                                 <div class="box">
-                                  <img src="{{ Storage::url($item->image) }}" class="w-100" alt="">
+                                  <div class="portfolio-wrap">
+                                  <img src="{{ Storage::url($item->image) }}" class="img-fluid" alt="">
+                                  <div class="portfolio-info">
+                                    <div class="portfolio-links">
+                                      <a href="{{ Storage::url($item->image) }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Product Image"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                                      <form action="{{ route('imageproduct.destroy',$item->id) }}" method="post">
+                                        @method('delete')
+                                        @csrf
+                                        <button onclick="return comfirm('Are you sure?')" title="More Details"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
                                 </div>
                               </div>
                                
+
                             @empty
-                            <div class="row" id="image_preview">
-                              <div class="col-md-3 mt-2">
-                                <div class="box rounded d-flex flex-row justify-content-center" id="tommbol_add_image"  style="height: 150px">
-                                  <div class="isi-box mt-auto mb-auto text-center text-white">
-                                    <i class="fa fa-plus" style="font-size: 20px" aria-hidden="true"></i>
-                                    <p class="font-weight-bolder">Tambah Gambar</p>
-                                  </div>
-                                </div>
-                              </div>
+                            <div class="dek" id="image_preview">
+                              
                             </div>
                             @endforelse
                             <div class="col-md-3 mt-2">

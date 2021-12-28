@@ -18,8 +18,8 @@ class CreateAdminUserSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'name' => 'IQBAL ZM',
-            'username' => 'iqbalmz',
+            'name' => 'Restu DS',
+            'username' => 'Restuds',
             'email' => 'restudentas720@gmail.com',
             'password' => Hash::make('201802104'),
             'jenis_kelamin' => 'Laki-laki',

@@ -9,6 +9,7 @@ use App\Models\Admin\ImageProduct;
 use App\Models\Admin\ProductModel;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Storage;
+use File;
 
 class ImageProductController extends Controller
 {
@@ -131,20 +132,27 @@ public function update(Request $request, ImageProduct $imageproduct)
 
 public function destroy($id)
 {
-    $data = ImageProduct::findOrFail($id);
+    $data = ImageProduct::where('id',$id)->first();
+	Storage::delete($data->oldImage);
+ 
+	// hapus data
+	ImageProduct::where('id',$id)->delete();
+ 
+	return redirect()->back();
 
-    $file = $data->image;
 
-    if($file) {
-        Storage::disk('local')->delete('public/'. $file);
-    }
-
-    $delete = $data->delete();
-
-    if ($delete) {
-        return redirect()->route('imageproduct.index')->with(['success' => 'Image Product has been deleted!']);
-    }else{
-        return redirect()->route('imageproduct.index')->with(['error' => 'Image Product has not deleted!']);
-    }
 }
+// public function destroy($id)
+// {
+//   $data = ImageProduct::findOrFail($id);
+//   Storage::disk('local')->delete('public/imageproduct/'.$data->image);
+//   $data->delete();
+
+//   if($data){
+//      //redirect dengan pesan sukses
+//      return redirect()->route('imageproduct.index')->with(['success' => 'Image Product has been deleted!']);
+//     }else{
+//         return redirect()->route('imageproduct.index')->with(['error' => 'Image Product has not deleted!']);
+//     }
+// }
 }

@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     public function index(){
-        return view('pages.cart');
+        // return view('pages.cart');
 
-        // $carts = Cart::with(['product.imageproduct', 'user'])
-        //                 ->where('users_id', Auth::user()->id)
-        //                 ->get();
-        // return view('pages.cart', [
-        //     'carts' => $carts
-        // ]);
+        $carts = Cart::with(['product.imageproduct', 'user'])
+                        ->where('users_id', Auth::user()->id)
+                        ->get();
+        return view('pages.cart', [
+            'carts' => $carts
+        ]);
     }
 
     public function delete(Request $request, $id){
@@ -24,7 +24,7 @@ class CartController extends Controller
 
         $cart->delete();
 
-        return redirect()->route('cart');
+        return redirect()->route('cart.index');
     }
 
     public function success()
