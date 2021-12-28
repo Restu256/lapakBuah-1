@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVoucher extends Migration
+class DropWarehouse extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,7 @@ class CreateVoucher extends Migration
      */
     public function up()
     {
-        Schema::create('voucher', function (Blueprint $table) {
-            $table->id();
-            $table->string('voucher');
-            $table->datetime('masa_berlaku');
-            $table->integer('potongan');
-            $table->timestamps();
-        });
+        Schema::drop('warehouse');
     }
 
     /**
@@ -29,6 +23,6 @@ class CreateVoucher extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('voucher');
+        //
     }
 }

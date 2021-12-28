@@ -64,6 +64,18 @@
                             <i class="fa fa-home fa-lg mr-2" aria-hidden="true"></i>
                             Dashbord
                         </a>
+                        <a
+                            href="{{ route('bank.index') }}"
+                            class="list-group-item list-group-item-action">
+                            <i class="fa fa-credit-card fa-lg mr-2" aria-hidden="true"></i>
+                            Bank Account
+                        </a>
+                        <a
+                            href="{{ route('voucher.index') }}"
+                            class="list-group-item list-group-item-action">
+                            <i class="fa fa-credit-card fa-lg mr-2" aria-hidden="true"></i>
+                            Voucher
+                        </a>
                         @can('product-list')
                         <a
                             href="{{ route('product.index') }}"
@@ -85,7 +97,14 @@
                             <i class="fa fa-object-group fa-lg mr-2" aria-hidden="true"></i>
                             Categories
                         </a>
-                        @endcan @can('stock-list')
+                        @endcan
+                        <a
+                            href="{{ route('gudang.index') }}"
+                            class="list-group-item list-group-item-action ">
+                            <i class="fa fa-home fa-lg mr-2" aria-hidden="true"></i>
+                            Warehouse
+                        </a>
+                        @can('stock-list')
                         <a
                             href="{{ route('stock.index') }}"
                             class="list-group-item list-group-item-action  ">
@@ -102,7 +121,7 @@
                             <i class="fa fa-user fa-lg mr-2" aria-hidden="true"></i>
                             Profile
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action  ">
+                        <a href="{{ route('transaction.index') }}" class="list-group-item list-group-item-action  ">
                             <i class="fa fa-list-alt fa-lg mr-2" aria-hidden="true"></i>
                             My Order
                         </a>

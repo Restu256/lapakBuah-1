@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRekeningSupplier extends Migration
+class CreateBankAccount extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateRekeningSupplier extends Migration
      */
     public function up()
     {
-        Schema::create('rekening_supplier', function (Blueprint $table) {
+        Schema::create('bank_account', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_supplier');
             $table->string('nama_bank');
             $table->string('no_rekening');
             $table->string('pemilik_rekening');
@@ -30,6 +29,6 @@ class CreateRekeningSupplier extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rekening_supplier');
+        Schema::dropIfExists('bank_account');
     }
 }
