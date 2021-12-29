@@ -1,0 +1,295 @@
+@extends('layouts.admin')
+
+@section('title')
+    LapakBuah.com ~ Dashboard Admin
+@endsection
+
+@section('content')
+    <div class="section-content section-dashboard-home"
+            data-aos="fade-up">
+            <div class="container-fluid">
+              <div class="dashboard-heading">
+              <h2 class="dashboard-title">Purchassing Management Product</h2>
+                <p class="dashboard-subtitle">Purchassing Management Product</p>
+              </div>
+              <div class="dashboard-content">
+                {{-- @include('pages.role_management.navigasi_roles') --}}
+                <div class="row">
+                    <div class="col-md-12">
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card header p-3">
+                                <h3>
+                                    Form Create Product Stock
+                                </h3>
+                            </div>
+                            <div class="card-body p-3">
+                                <form action="{{ route('stock.store') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="col-12 table-responsive">
+                            <table class="table table-borderless table-cart">
+                                <thead>
+                                    <tr class="font-weight-bolder">
+                                        <td style="width: 20%;">Image</td>
+                                        <td style="width: 20%;">Name &amp; Seller</td>
+                                        <td style="width: 20%;">Price</td>
+                                        <td style="width: 20%;">Qty</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td>
+                                            @if ($message = Session::get('success'))
+                                                    <img src="" class="cart-image img-preview img-fluid mb-3 col-sm-5 d-block w-50">
+                                                    @else
+                                                    <img class="cart-image img-preview img-fluid mb-3 col-sm-5">
+                                                    @endif
+                                            </td>
+                                            <td>
+                                                <div class="product-title text-success"></div>
+                                                <div class="product-subtitle">
+                                                    <i class="fa fa-map-marker mr-2" aria-hidden="true"></i>
+                                                    Lokasi Gudang
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="product-title">Rp </div>
+                                                <div class="product-subtitle"><input type="text" value=""></div>
+                                                <div class="product-subtitle">RP</div>
+                                            </td>
+                                            <td>
+                                                <div class="product-title pt-1">
+                                                    <input type="number" value="0" min="0" max="100" step="1" data-suffix="" data-prefix="" class="bg-transparent border-top-0 border-right-0 border-left-0 qty_form">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                                <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="address"
+                                        name="address"
+                                        value="Sentra Duta Cemara"
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="provinces_id">Province</label>
+                                    <select
+                                        name="provinces_id"
+                                        id="provinces_id"
+                                        class="form-control"
+                                        v-if="provinces"
+                                        v-model="provinces_id"
+                                    >
+                                        <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+                                    </select>
+                                    <select v-else class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="regencies_id">City</label>
+                                    <select
+                                        name="regencies_id"
+                                        id="regencies_id"
+                                        class="form-control"
+                                        v-if="regencies"
+                                        v-model="regencies_id"
+                                    >
+                                        <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
+                                    </select>
+                                    <select v-else class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="districes_id">districes</label>
+                                    <select
+                                        name="districes_id"
+                                        id="districes_id"
+                                        class="form-control"
+                                        v-if="districes"
+                                        v-model="districes_id"
+                                    >
+                                        <option v-for="dis in districes" :value="dis.id">@{{ dis.name }}</option>
+                                    </select>
+                                    <select v-else class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="villages_id">Village</label>
+                                    <select
+                                        name="villages_id"
+                                        id="villages_id"
+                                        class="form-control"
+                                        v-if="villages"
+                                        v-model="villages_id"
+                                    >
+                                        <option v-for="village in villages" :value="village.id">@{{ village.name }}</option>
+                                    </select>
+                                    <select v-else class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="kode_pos">Kode POS</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="kode_pos"
+                                        name="kode_pos"
+                                        value="42833248"
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="country">Country</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="country"
+                                        name="country"
+                                        value="Indonesia"
+                                    />
+                                </div>
+                                </div>
+                                <div class="col-md-12" align="right">
+                                <div class="form-group">
+                                    <input type="submit" value="Simpan" class="btn btn-primary">
+                                    <a href="{{ route('blog.index') }}" class="btn btn-dark">
+                                        <i class="fa fa-reply" aria-hidden="true">
+                                            Back</i>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endsection
+
+    <!-- @push('addon-script')
+    @endpush -->
+    @push('addon-script')
+    <script>
+        function previewImage() {
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+    
+        imgPreview.style.display = 'block';
+    
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+    
+        oFReader.onload = function(oFREvent){
+        imgPreview.src = oFREvent.target.result;
+        }
+    
+        }
+    </script>
+    <script src="/vendor/vue/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/vendor/Input-Spinner-Plugin-Bootstrap-4/src/input-spinner.js"></script>
+    <script>
+        $(".qty_form").inputSpinner({
+            // button text/icons
+            decrementButton: "<i class='fa fa-plus-circle text-success fa-lg' aria-hidden='true'></i>",
+            incrementButton: "<i class='fa fa-minus-circle text-success fa-lg' aria-hidden='true'></i>",
+            buttonsClass: "btn btn-sm btn-rounded",
+            autoDelay: 500,
+        });
+    </script>
+    <script> 
+        var locations = new Vue({
+          el: "#locations",
+          mounted() {
+              AOS.init();
+              this.getProvincesData();
+              this.getDistrictsData();
+              this.getRegenciesData();
+              this.getVillagesData();
+          },
+          data: {
+              provinces: null,
+              regencies: null,
+              districes: null,
+              villages: null,
+              provinces_id: null,
+              regencies_id: null,
+              districes_id: null,
+              villages_id: null,
+          },
+          methods: {
+              getProvincesData(){
+                  var self = this;
+                  axios.get('{{ route('api-provinces') }}')
+                  .then(function(response){
+                      self.provinces = response.data;
+                  })
+              },
+              getRegenciesData(){
+                  var self = this;
+                  axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+                  .then(function(response){
+                      self.regencies = response.data;
+                  })
+              },
+              getDistrictsData(){
+                  var self = this;
+                  axios.get('{{ url('api/districes') }}/' + self.regencies_id)
+                  .then(function(response){
+                      self.districes = response.data;
+                  })
+              },
+              getVillagesData(){
+                  var self = this;
+                  axios.get('{{ url('api/villages') }}/' + self.districes_id)
+                  .then(function(response){
+                      self.villages = response.data;
+                      console.log(response);
+                  })
+              },
+          },
+          watch: {
+              provinces_id: function(va, oldval){
+                  this.regencies_id = null;
+                  this.getRegenciesData();
+              },
+              regencies_id: function(va, oldval){
+                  this.districts_id = null;
+                  this.getDistrictsData();
+              },
+              districes_id: function(va, oldval){
+                  this.villages_id = null;
+                  this.getVillagesData();
+              },
+          },
+        });
+      </script>
+
+@endpush

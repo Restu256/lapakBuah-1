@@ -76,7 +76,6 @@ class ProductController extends Controller
             'satuan'        => 'required',
             'harga_beli'    => 'required',
             'harga_jual'    => 'required',
-            'qty'           => 'required',
             'berat'         => 'required',
             'description'   => 'required',
         ]);

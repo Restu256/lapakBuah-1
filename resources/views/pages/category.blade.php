@@ -38,7 +38,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6" data-aos="fade-up">
+<<<<<<< HEAD
                         <h5>Product</h5> 
+=======
+                        <h5>Product</h5>
+>>>>>>> iqbalGithub/main
                     </div>
                 </div>
                 <div class="row">
