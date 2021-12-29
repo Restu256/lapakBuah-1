@@ -1,5 +1,9 @@
 <?php
-
+use App\Http\Controllers\Admin\VoucherController;
+use App\Http\Controllers\Admin\GudangController;
+use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\StockController;
+use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
@@ -62,19 +66,23 @@ Route::middleware(['auth', 'verified'])->group( function(){
     Route::get('/success', [HomeController::class, 'success']);
     Route::resource('dashboard', DashboardController::class); 
     Route::get('/logout', [DashboardController::class, 'signout']);
+    Route::resource('bank', BankController::class);
 
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('routes', RouteController::class);
+    Route::resource('voucher', VoucherController::class);
 
     Route::resource('supplier', SupplierController::class);
+    Route::resource('stock', StockController::class);
+    Route::resource('transaction', TransactionController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('category_blog', BlogCategoryController::class);
     Route::resource('product', ProductController::class);
+    Route::resource('gudang', GudangController::class);
     Route::resource('imageproduct', ImageProductController::class);
     Route::resource('blog', BlogController::class);
     Route::resource('imageblog', ImageBlogController::class);
-
     Route::resource('cart', CartController::class);
     Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
 
