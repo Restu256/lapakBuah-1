@@ -101,14 +101,16 @@
                       <td>Harga Jual</td>
                       <td>Berat</td>
                       <td>Stok</td>
-                    </thead>  
+                    </thead>
+                    @foreach ($data->typeproduct as $type)  
                     <tbody>
-                    <td>{{ $data->type_products }}</td>
-                    <td>{{ $data->type_products }}</td>
-                    <td>{{ $data->type_products }}</td>
-                    <td>{{ $data->type_products }}</td>
-                    <td>{{ $data->type_products }}</td>
-                  </tbody>      
+                    <td>{{ $type->type_products }}</td>
+                    <td>{{ $type->satuan }}</td>
+                    <td>{{ $type->harga_jual }}</td>
+                    <td>{{ $type->berat }}</td>
+                    <td>{{ $type->qty }}</td>
+                  </tbody>  
+                  @endforeach    
                     </table>
                         <div class="col-md-12">
                           <div class="box p-3 bg-light rounded">
