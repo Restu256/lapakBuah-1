@@ -93,7 +93,23 @@
                         </div>    
                         </div>
                       </div>
-                      <div class="row">
+                      <div class="row mt-5">
+                      <table class="table">
+                    <thead>
+                      <td>Type Product</td>
+                      <td>Satuan</td>
+                      <td>Harga Jual</td>
+                      <td>Berat</td>
+                      <td>Stok</td>
+                    </thead>  
+                    <tbody>
+                    <td>{{ $data->type_products }}</td>
+                    <td>{{ $data->type_products }}</td>
+                    <td>{{ $data->type_products }}</td>
+                    <td>{{ $data->type_products }}</td>
+                    <td>{{ $data->type_products }}</td>
+                  </tbody>      
+                    </table>
                         <div class="col-md-12">
                           <div class="box p-3 bg-light rounded">
                           <div class="row">
