@@ -71,60 +71,6 @@
                             </tr>
                             <tr>
                               <td>
-                                Satuan
-                              </td>
-                              <td>:</td>
-                              <td>
-                                {{ $data->satuan }}
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                Harga Beli
-                              </td>
-                              <td>:</td>
-                              <td>
-                                Rp {{ number_format($data->harga_beli,0,',','. ')  }}
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                Harga Jual
-                              </td>
-                              <td>:</td>
-                              <td>
-                                Rp {{ number_format($data->harga_jual,0,',','. ')  }}
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                Quantity
-                              </td>
-                              <td>:</td>
-                              <td>
-                                {{ $data->qty }}
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                Berat
-                              </td>
-                              <td>:</td>
-                              <td>
-                                {{ $data->berat }}
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                Diskon
-                              </td>
-                              <td>:</td>
-                              <td>
-                                {{ $data->diskon }}%
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
                                 Slug
                               </td>
                               <td>:</td>
@@ -142,9 +88,30 @@
                               </td>
                             </tr>
                           </table>
+                          <div class="col-md-12" align="right">
+                        <a  href="{{ route('typeproduct.create') }}" role="button" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Type Product </a> 
+                        </div>    
                         </div>
                       </div>
-                      <div class="row">
+                      <div class="row mt-5">
+                      <table class="table">
+                    <thead>
+                      <td>Type Product</td>
+                      <td>Satuan</td>
+                      <td>Harga Jual</td>
+                      <td>Berat</td>
+                      <td>Stok</td>
+                    </thead>
+                    @foreach ($data->typeproduct as $type)  
+                    <tbody>
+                    <td>{{ $type->type_products }}</td>
+                    <td>{{ $type->satuan }}</td>
+                    <td>{{ $type->harga_jual }}</td>
+                    <td>{{ $type->berat }}</td>
+                    <td>{{ $type->qty }}</td>
+                  </tbody>  
+                  @endforeach    
+                    </table>
                         <div class="col-md-12">
                           <div class="box p-3 bg-light rounded">
                           <div class="row">
@@ -204,6 +171,24 @@
     </div>
   </div>
   @endsection
+<!-- Modal
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
 @push('addon-script')
 
 @push('addon-script')

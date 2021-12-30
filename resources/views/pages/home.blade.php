@@ -69,15 +69,24 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-4 col-md-3 col-lg-2" data-aos="fade-up"
+                    data-aos-delay="">
+                    <a class="component-categories d-block" href="">
+                            <div class="categories-image">
+                                <img src="" alt="Gadgets Categories" class="img-fluid" />
+                            </div>
+                            <p class="categories-text">Semua Kategori</p>
+                        </a>    
+                    </div>
                     @php
                         $incrementCategory = 0
                     @endphp
                     @forelse ($categories as $cat)
                         <div class="col-4 col-md-3 col-lg-2" data-aos="fade-up"
                         data-aos-delay="{{ $incrementCategory+=100 }}">
-                            <a class="component-categories d-block" href="{{ route('categories-detail', $cat->slug) }}">
+                        <a class="component-categories d-block" href="{{ route('categories-detail', $cat->slug) }}">
                                 <div class="categories-image">
-                                    <img src="{{ Storage::url($cat->image_category) }}" alt="Gadgets Categories" class="w-100" />
+                                    <img src="{{ Storage::url($cat->image_category) }}" alt="{{ $cat->name_category }}" title="{{ $cat->name_category }}" class="img-fluid" />
                                 </div>
                                 <p class="categories-text">{{ $cat->name_category }}</p>
                             </a>
