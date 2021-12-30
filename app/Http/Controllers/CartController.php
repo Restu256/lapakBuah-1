@@ -19,7 +19,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function delete(Request $request, $id){
+    public function destroy(Request $request, $id){
         $cart = Cart::findOrFail($id);
 
         $cart->delete();

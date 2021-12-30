@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\admin;
+namespace App\Models\Admin;
 
 use App\Models\Admin\Category;
 use App\Models\Admin\Stock;
@@ -37,9 +37,12 @@ class ProductModel extends Model
     }
 
     function imageproduct() {
-        return $this->hasMany(imageproduct::class, 'product_id');
+        return $this->hasMany(ImageProduct::class, 'product_id');
     }
     function stock() {
         return $this->hasMany(Stock::class, 'products_id');
+    }
+    function typeproduct() {
+        return $this->hasMany(TypeProduct::class, 'product_id');
     }
 }

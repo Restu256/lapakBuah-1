@@ -32,7 +32,7 @@
                         <div class="box bg-white rounded shadow-sm p-3">
                             <div class="box-header">
                                 <div class="box-title w-100 d-flex flex-row justify-content-between">
-                                    <h3>Edit Data User</h3>
+                                    <h3>Edit data user</h3>
                                     {{-- @can('role-list') --}}
                                         <a class="btn btn-success" href="{{ route('users.index') }}"><i class="fa fa-reply" aria-hidden="true"></i> Back</a>
                                     {{-- @endcan --}}

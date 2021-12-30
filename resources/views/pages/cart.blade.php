@@ -56,7 +56,7 @@
                                             </td>
                                             <td>
                                                 <div class="product-title">Rp {{ number_format($cart->product->harga_jual,0,',','. ')  }}</div>
-                                                <div class="product-subtitle"><input type="text" value="{{ $cart->product->harga_jual }}"></div>
+                                                <div class="product-subtitle"><input type="hidden" value="{{ $cart->product->harga_jual }}"></div>
                                                 <div class="product-subtitle">RP</div>
                                             </td>
                                             <td>
@@ -65,7 +65,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <form action="{{ route('cart-delete', $cart->id ) }}" method="POST">
+                                                <form action="{{ route('cart.destroy', $cart->id ) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button
@@ -95,7 +95,7 @@
                     <form action="" id="locations" enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="address">Address</label>
                                     <input
@@ -107,7 +107,7 @@
                                     />
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="provinces_id">Province</label>
                                     <select
@@ -122,7 +122,7 @@
                                     <select v-else class="form-control"></select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="regencies_id">City</label>
                                     <select
@@ -137,7 +137,7 @@
                                     <select v-else class="form-control"></select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="districes_id">districes</label>
                                     <select
@@ -152,7 +152,7 @@
                                     <select v-else class="form-control"></select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="villages_id">Village</label>
                                     <select
@@ -167,7 +167,7 @@
                                     <select v-else class="form-control"></select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="kode_pos">Kode POS</label>
                                     <input
@@ -179,7 +179,7 @@
                                     />
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="country">Country</label>
                                     <input
@@ -191,7 +191,7 @@
                                     />
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="phone_number">Mobile</label>
                                     <input

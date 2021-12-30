@@ -37,7 +37,8 @@ data - aos = "fade-up">
                     </div>
                     <div class="card-body p-3">
                         <form
-                            action="{{ route('bank.store') }}"
+                            id="locations"
+                            action="{{ route('gudang.store') }}"
                             method="post"
                             enctype="multipart/form-data">
                             @csrf
@@ -83,7 +84,7 @@ data - aos = "fade-up">
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="regencies_id">City</label>
+                                    <label for="regencies_id">City</label> 
                                     <select
                                         name="regencies_id"
                                         id="regencies_id"
@@ -167,6 +168,80 @@ data - aos = "fade-up">
                 </div>
             </div>
         </div>
-        @endsection @push('addon-script')
-        
-        @endpush
+
+        @endsection 
+
+        @push('addon-script')
+        <script src="/vendor/vue/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script> 
+            var locations = new Vue({
+              el: "#locations",
+              mounted() {
+                  AOS.init();
+                  this.getProvincesData();
+                  this.getDistrictsData();
+                  this.getRegenciesData();
+                  this.getVillagesData();
+              },
+              data: {
+                  provinces: null,
+                  regencies: null,
+                  districes: null,
+                  villages: null,
+                  provinces_id: null,
+                  regencies_id: null,
+                  districes_id: null,
+                  villages_id: null,
+              },
+              methods: {
+                  getProvincesData(){
+                      var self = this;
+                      axios.get('{{ route('api-provinces') }}')
+                      .then(function(response){
+                          self.provinces = response.data;
+                          console.log('provin'+response.data);
+                      })
+                  },
+                  getRegenciesData(){
+                      var self = this;
+                      axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+                      .then(function(response){
+                          self.regencies = response.data;
+                          console.log(response.data);
+                      })
+                  },
+                  getDistrictsData(){
+                      var self = this;
+                      axios.get('{{ url('api/districes') }}/' + self.regencies_id)
+                      .then(function(response){
+                          self.districes = response.data;
+                      })
+                  },
+                  getVillagesData(){
+                      var self = this;
+                      axios.get('{{ url('api/villages') }}/' + self.districes_id)
+                      .then(function(response){
+                          self.villages = response.data;
+                          console.log(response);
+                      })
+                  },
+              },
+              watch: {
+                  provinces_id: function(va, oldval){
+                      this.regencies_id = null;
+                      this.getRegenciesData();
+                  },
+                  regencies_id: function(va, oldval){
+                      this.districts_id = null;
+                      this.getDistrictsData();
+                  },
+                  districes_id: function(va, oldval){
+                      this.villages_id = null;
+                      this.getVillagesData();
+                  },
+              },
+            });
+          </script>
+    
+    @endpush

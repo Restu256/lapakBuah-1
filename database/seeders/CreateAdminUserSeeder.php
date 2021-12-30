@@ -20,8 +20,8 @@ class CreateAdminUserSeeder extends Seeder
         $user = User::create([
             'name' => 'Restu DS',
             'username' => 'Restuds',
-            'email' => 'restudentas720@gmail.com',
-            'password' => Hash::make('201802104'),
+            'email' => 'iqbalmutaqinzaenal75@gmail.com',
+            'password' => Hash::make('201802049'),
             'jenis_kelamin' => 'Laki-laki',
             'tanggal_lahir' => '2000-11-03'
         ]);
@@ -45,6 +45,8 @@ class CreateAdminUserSeeder extends Seeder
         ]);
     
         Role::create(['name' => 'User']);
+        Role::create(['name' => 'Purchasing']);
+        Role::create(['name' => 'Finance']);
         $user->assignRole('User');
     }
 }

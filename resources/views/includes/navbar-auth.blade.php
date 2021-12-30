@@ -16,7 +16,7 @@
                     <a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" href="/">Home </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('category_front')) ? 'active' : '' }}" href="/category_front">Categories</a>
+                    <a class="nav-link {{ (request()->is('category_front')) ? 'active' : '' }}" href="{{ url('category_front') }}">Categories</a>
                 </li>
                 @guest
                 <li class="nav-item">

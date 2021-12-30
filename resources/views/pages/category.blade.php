@@ -38,7 +38,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6" data-aos="fade-up">
-                        <h5>Product</h5>
+                        <h5>Product</h5> 
+
                     </div>
                 </div>
                 <div class="row">
@@ -47,7 +48,7 @@
                     @endphp
                     @forelse ($products as $product)
                         <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="{{ $incrementProduct+=100 }}">
-                            <a href="{{ route('detail', $product->slug) }}" class="component-products d-block">
+                            <a href="{{ route('product-detail', $product->slug) }}" class="component-products d-block">
                                 <div class="products-thumbnail">
                                     <div class="products-image" style="@if ($product->imageproduct)
                                         background-image: url('{{ Storage::url($product->imageproduct->first()->image) }}')

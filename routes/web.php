@@ -7,11 +7,13 @@ use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ImageBlogController;
 use App\Http\Controllers\Admin\ImageProductController;
 use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\Blog\HomeController as BlogHomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController as ControllersCategoryController;
 use App\Http\Controllers\CategoryFrontController;
@@ -36,11 +38,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/blog', [BlogHomeController::class, 'index']);
+
 Route::get('/', [HomeController::class, 'index']);
 Route::post('logged_in', [LoginController::class, 'authenticate']);
 
 Route::get('category_front', [CategoryFrontController::class, 'index']);
-Route::get('/categories/{id}', [CategoryFrontController::class, 'detail'])->name('categories-detail');
+Route::get('categories/{id}', [CategoryFrontController::class, 'detail'])->name('categories-detail');
 
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('product-detail');
 Route::post('/details/{id}', [DetailController::class, 'add'])->name('product-add');
@@ -76,6 +80,7 @@ Route::middleware(['auth', 'verified'])->group( function(){
     Route::resource('supplier', SupplierController::class);
     Route::resource('stock', StockController::class);
     Route::resource('transaction', TransactionController::class);
+    Route::resource('typeproduct', TypeController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('category_blog', BlogCategoryController::class);
     Route::resource('product', ProductController::class);

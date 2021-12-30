@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Gudang;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class GudangController extends Controller
 {
     public function index()
     {
         if (request()->ajax()) {
-            $query = Supplier::all();
+            $query = Gudang::all();
             // dd($query);
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
@@ -25,10 +27,10 @@ class GudangController extends Controller
                                         Aksi
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '" style="border-radius:10px 0px 10px 10px; margin:10px;">
-                                    <a class="dropdown-item" href="' . route('supplier.edit', $item->id) . '">
+                                    <a class="dropdown-item" href="' . route('gudang.edit', $item->id) . '">
                                         Sunting
                                     </a>
-                                    <form action="' . route('supplier.destroy', $item->id) . '" method="POST">
+                                    <form action="' . route('gudang.destroy', $item->id) . '" method="POST">
                                         ' . method_field('delete') . csrf_field() . '
                                         <button type="submit" class="dropdown-item text-danger">
                                             Hapus
@@ -61,7 +63,7 @@ class GudangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SupplierRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
 
@@ -133,6 +135,7 @@ class GudangController extends Controller
         $data = Gudang::findOrFail($id);
 
         $msg = $data->delete();
+
         if ($msg) {
             return redirect()->back()->with(['success' => 'Data Berhasil Dihapus']);
         }else{

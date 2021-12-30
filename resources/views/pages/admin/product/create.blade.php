@@ -71,7 +71,7 @@ data - aos = "fade-up" > <div class="container-fluid">
                                     </div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="satuan">Satuan</label>
                                     <input
                                         type="text"
@@ -112,7 +112,7 @@ data - aos = "fade-up" > <div class="container-fluid">
                                                     {{ $message }}
                                                 </div>
                                                 @enderror
-                                            </div>
+                                            </div> -->
                                             <!-- <div class="form-group">
                                                 <label for="qty">Quantity</label>
                                                 <input
@@ -127,7 +127,7 @@ data - aos = "fade-up" > <div class="container-fluid">
                                                     </div>
                                                     @enderror
                                                 </div> -->
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <label for="berat">Berat</label>
                                                     <input
                                                         type="number"
@@ -154,7 +154,7 @@ data - aos = "fade-up" > <div class="container-fluid">
                                                         {{ $message }}
                                                     </div>
                                                     @enderror
-                                                </div>
+                                                </div> -->
                                                 <div class="form-group">
                                                     <label for="description">Description</label>
                                                     <input id="description" type="hidden" name="description" value="{{ old('description') }}">

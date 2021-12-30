@@ -73,10 +73,10 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'nama_product'  => 'required|max:255',
             'category_id'   => 'required|integer',
-            'satuan'        => 'required',
-            'harga_beli'    => 'required',
-            'harga_jual'    => 'required',
-            'berat'         => 'required',
+            // 'satuan'        => 'required',
+            // 'harga_beli'    => 'required',
+            // 'harga_jual'    => 'required',
+            // 'berat'         => 'required',
             'description'   => 'required',
         ]);
 
@@ -87,7 +87,7 @@ class ProductController extends Controller
         $insert = ProductModel::create($data);
         if($insert){
             //redirect dengan pesan sukses
-            return redirect()->route('product.index')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect('TypeController')->with(['success' => 'Data Berhasil Disimpan!']);
         }else{
             //redirect dengan pesan error
             return redirect()->route('product.index')->with(['error' => 'Data Gagal Disimpan!']);
