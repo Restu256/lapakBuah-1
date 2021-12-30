@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ImageBlogController;
@@ -76,6 +77,7 @@ Route::middleware(['auth', 'verified'])->group( function(){
     Route::resource('supplier', SupplierController::class);
     Route::resource('stock', StockController::class);
     Route::resource('transaction', TransactionController::class);
+    Route::resource('typeproduct', TypeController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('category_blog', BlogCategoryController::class);
     Route::resource('product', ProductController::class);

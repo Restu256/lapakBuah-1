@@ -45,6 +45,8 @@ class CreateAdminUserSeeder extends Seeder
         ]);
     
         Role::create(['name' => 'User']);
+        Role::create(['name' => 'Purchasing']);
+        Role::create(['name' => 'Finance']);
         $user->assignRole('User');
     }
 }
