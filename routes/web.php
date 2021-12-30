@@ -37,9 +37,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [BlogHomeController::class, 'index']);
+Route::get('/blog', [BlogHomeController::class, 'index']);
 
-Route::get('/blog', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 Route::post('logged_in', [LoginController::class, 'authenticate']);
 
 Route::get('category_front', [CategoryFrontController::class, 'index']);

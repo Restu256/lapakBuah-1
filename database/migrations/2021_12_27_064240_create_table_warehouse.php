@@ -19,8 +19,8 @@ class CreateTableWarehouse extends Migration
                 $table->text('address')->nullable();
                 $table->integer('provincies_id')->nullable();
                 $table->integer('regencies_id')->nullable();
-                $table->integer('district_id')->nullable();
-                $table->integer('villages_id')->nullable();
+                $table->bigInteger('district_id')->nullable();
+                $table->bigInteger('villages_id')->nullable();
                 $table->integer('kode_pos')->nullable();
                 $table->string('country')->nullable();
                 $table->timestamps();

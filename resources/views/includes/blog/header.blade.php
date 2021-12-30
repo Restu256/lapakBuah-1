@@ -5,7 +5,7 @@
             <!-- Logo -->
             <div class="header-logo-wrap">
                 <a href="#" class="logo">
-                    <img src="/images/logo_lapak_buah/Logo-web-lapakbuah 1.png" width="145" height="40" alt="" />
+                    <img src="/images/logo_lapak_buah/Logo-web-lapakbuah 1.png" width="100" height="auto" alt="" />
                 </a>
             </div>
             <!-- Mobile nav bars -->
