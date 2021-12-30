@@ -6,14 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
 
-class ImageProduct extends Model
+class TypeProduct extends Model
 {
     use HasFactory, HasRoles;
 
-    protected $table = 'image_product';
+    protected $table = 'type_products';
     protected $fillable = [
         'product_id',
-        'image',
+        'type_products',
+        'satuan',
+        'harga_beli',
+        'harga_jual',
+        'qty',
+        'berat',
+        'diskon',
     ];
 
     function product(){
